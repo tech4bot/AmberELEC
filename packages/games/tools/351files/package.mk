@@ -13,6 +13,10 @@ if [ "${DEVICE}" = "RG552" ]; then
   PKG_PATCH_DIRS="RG552"
 fi
 
+if [ "${DEVICE}" = "RG351V" ]; then
+  PKG_PATCH_DIRS="RG351V"
+fi
+
 make_target() {
   make DEVICE=${DEVICE} RES_PATH=/usr/share/351files/res START_PATH=/storage/roms SDL2_CONFIG=${SYSROOT_PREFIX}/usr/bin/sdl2-config CC=${CXX}
 }

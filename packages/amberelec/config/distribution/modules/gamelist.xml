@@ -197,16 +197,16 @@
 	</game>
 
 	<game>
-		<path>./display_fix.sh</path>
-		<name>Display timing Fix</name>
-		<desc>This will fix display timing issues for some RG351MP/V devices.</desc>
+		<path>./joyleds_conf.sh</path>
+		<name>Joystick LEDs</name>
+		<desc>Control LEDs from your joysticks.</desc>
 		<developer>AmberELEC</developer>
 		<publisher>AmberELEC</publisher>
 		<rating>1.0</rating>
-		<releasedate>2022</releasedate>
+		<releasedate>2023</releasedate>
 		<genre>Script</genre>
-		<thumbnail>./downloaded_images/timing-thumb.png</thumbnail>
-		<image>./downloaded_images/timing.png</image>
+		<thumbnail>./downloaded_images/leds-thumb.png</thumbnail>
+		<image>./downloaded_images/leds.png</image>
 	</game>
 
 </gameList>

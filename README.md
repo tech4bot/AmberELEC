@@ -99,3 +99,7 @@ As AmberELEC includes code from many upstream projects it includes many copyrigh
 All AmberELEC (formerly known as 351ELEC) related logos, videos, images and branding in general are the sole property of AmberELEC and they are all Copyrighted by the AmberELEC team and are not to be included in any commercial application whatsoever without the proper authorization! AmberELEC may not be bundled with games or distributed as donationware!
 
 You are however granted permission to include/modify them in your forks/projects as long as they are completely open-source, freely available (as in [but not limited to] not under a bunch of "click this sponsored ad to get the link!"), and do not infringe on any copyright laws, even if you receive donations for such project (we are not against donations for honest people!), we only ask that you give us the proper credit and if possible a link to this repo.
+
+## Attribute
+
+[Led light icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/led-light)
