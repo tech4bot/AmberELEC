@@ -6,7 +6,7 @@ Before=amberelec.target
 [Service]
 Environment=HOME=/storage
 EnvironmentFile=/etc/profile
-ExecStart=/usr/bin/retorun_adckeys.sh
+ExecStart=/usr/bin/retrorun_adckeys.sh
 Restart=always
 RestartSec=1
 

@@ -1,8 +1,15 @@
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-index 7c63c70f3..4a78ba359 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-@@ -23,23 +23,245 @@
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc-timing_fix.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc-timing_fix.dts
+index fe22a6b1b..4a78ba359 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc-timing_fix.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc-timing_fix.dts
+@@ -17,29 +17,251 @@
+ 
+ / {
+ 	model = "Anbernic RG351V";
+-	compatible = "rockchip,rk3326-rg351v-linux-oc", "rockchip,rk3326";
++	compatible = "rockchip,rk3326-rg351v-linux", "rockchip,rk3326";
+ 
+ 	chosen {
                  bootargs = "";
  	};
  
@@ -387,7 +394,38 @@ index 7c63c70f3..4a78ba359 100644
  &bus_apll {
  	bus-supply = <&vdd_logic>;
  	status = "okay";
-@@ -164,7 +424,7 @@
+@@ -145,28 +405,15 @@
+ 
+ 	/* bin scaling clock 1.296MHz */
+ 	rockchip,bin-scaling-sel = <
+-		0	10
+-		1	13
+-		2	16
+-		3	20
++		0               13
++		1               13
+ 	>;
+ 
+ 	/delete-node/ opp-408000000;
+ 	/delete-node/ opp-600000000;
+ 	/delete-node/ opp-816000000;
+-	/delete-node/ opp-1248000000;
+ 	/delete-node/ opp-1416000000;
+ 	/delete-node/ opp-1512000000;
+-	opp-1368000000 {
+-		opp-hz = /bits/ 64 <1368000000>;
+-		opp-microvolt = <1350000 1350000 1350000>;
+-		opp-microvolt-L0 = <1350000 1350000 1350000>;
+-		opp-microvolt-L1 = <1350000 1350000 1350000>;
+-		opp-microvolt-L2 = <1300000 1300000 1350000>;
+-		opp-microvolt-L3 = <1250000 1250000 1350000>;
+-		clock-latency-ns = <40000>;
+-	};
+-
+ };
+ 
+ &display_subsystem {
+@@ -177,7 +424,7 @@
  	status = "okay";
  
  	panel@0 {
@@ -396,7 +434,7 @@ index 7c63c70f3..4a78ba359 100644
  		reg = <0>;
  
  		/* pwm1 backlight */
-@@ -175,18 +435,18 @@
+@@ -188,18 +435,18 @@
  		power-supply = <&vcc_lcd>;
  
  		/* Rev 0.2 LCD reset gpio GPIO3.C0 */
@@ -423,7 +461,7 @@ index 7c63c70f3..4a78ba359 100644
  
  		dsi,flags = <(MIPI_DSI_MODE_VIDEO           |
  			      MIPI_DSI_MODE_VIDEO_BURST     |
-@@ -224,217 +484,28 @@
+@@ -237,217 +484,28 @@
  			  29: DisplayOn & 50ms wait
  		*/
  
@@ -538,21 +576,21 @@ index 7c63c70f3..4a78ba359 100644
 -			15 00 02 42 80
 -			15 00 02 43 81
 -			15 00 02 44 11
--			15 00 02 45 E6
--			15 00 02 46 E5
+-			15 00 02 45 F2
+-			15 00 02 46 F1
 -			15 00 02 47 11
--			15 00 02 48 E8
--			15 00 02 49 E7
+-			15 00 02 48 F4
+-			15 00 02 49 F3
 -			15 00 02 50 02
 -			15 00 02 51 01
 -			15 00 02 52 04
 -			15 00 02 53 03
 -			15 00 02 54 11
--			15 00 02 55 EA
--			15 00 02 56 E9
+-			15 00 02 55 F6
+-			15 00 02 56 F5
 -			15 00 02 57 11
--			15 00 02 58 EC
--			15 00 02 59 EB
+-			15 00 02 58 F8
+-			15 00 02 59 F7
 -			15 00 02 7E 02
 -			15 00 02 7F 80
 -			15 00 02 E0 5A
@@ -630,19 +668,18 @@ index 7c63c70f3..4a78ba359 100644
  			native-mode = <&timing0>;
  
  			timing0: timing0 {
--				clock-frequency = <26400000>;
+-				clock-frequency = <27500000>;
 +				clock-frequency = <33000000>;
  				hactive = <640>;
  				vactive = <480>;
--				hfront-porch = <119>;
+-				hfront-porch = <50>;
 +				hfront-porch = <120>;
  				hsync-len = <2>;
--				hback-porch = <119>;
--				vfront-porch = <13>;
+-				hback-porch = <90>;
 +				hback-porch = <120>;
-+				vfront-porch = <18>;
+ 				vfront-porch = <18>;
  				vsync-len = <2>;
--				vback-porch = <5>;
+-				vback-porch = <86>;
 -				hsync-active = <0>;
 -				vsync-active = <0>;
 +				vback-porch = <20>;
@@ -651,7 +688,7 @@ index 7c63c70f3..4a78ba359 100644
  				de-active = <0>;
  				pixelclk-active = <0>;
  			};
-@@ -446,6 +517,11 @@
+@@ -459,6 +517,11 @@
  	status = "okay";
  };
  
@@ -663,7 +700,7 @@ index 7c63c70f3..4a78ba359 100644
  &dfi {
  	status = "okay";
  };
-@@ -461,16 +537,11 @@
+@@ -474,22 +537,11 @@
  	/delete-node/ opp-450000000;
  
  	opp-786000000 {
@@ -673,6 +710,12 @@ index 7c63c70f3..4a78ba359 100644
 -		opp-microvolt-L1 = <1075000>;
 -		opp-microvolt-L2 = <1050000>;
 -		opp-microvolt-L3 = <1025000>;
+-		status = "okay";
+-	};
+-
+-	opp-850000000 {
+-		opp-hz = /bits/ 64 <850000000>;
+-		opp-microvolt = <1150000>;
  		status = "okay";
  	};
  };
@@ -681,7 +724,21 @@ index 7c63c70f3..4a78ba359 100644
  &emmc {
  	status = "disabled";
  };
-@@ -487,7 +558,7 @@
+@@ -502,21 +554,11 @@
+ &gpu_opp_table {
+ 	/delete-node/ opp-200000000;
+ 	/delete-node/ opp-300000000;
+-	/delete-node/ opp-520000000;
+-
+-        opp-560000000 {
+-                 opp-hz = /bits/ 64 <560000000>;
+-                 opp-microvolt = <1175000>;
+-                 opp-microvolt-L0 = <1175000>;
+-                 opp-microvolt-L1 = <1175000>;
+-                 opp-microvolt-L2 = <1175000>;
+-                 opp-microvolt-L3 = <1150000>;
+-         };
+ };
  
  &i2c0 {
  	status = "okay";
@@ -690,7 +747,7 @@ index 7c63c70f3..4a78ba359 100644
  	i2c-scl-rising-time-ns = <280>;
  	i2c-scl-falling-time-ns = <16>;
  
-@@ -517,7 +588,7 @@
+@@ -546,7 +588,7 @@
  		vcc4-supply = <&vccsys>;
  		vcc5-supply = <&vccsys>;
  		vcc6-supply = <&vccsys>;
@@ -699,27 +756,29 @@ index 7c63c70f3..4a78ba359 100644
  		vcc8-supply = <&vccsys>;
  		vcc9-supply = <&dcdc_boost>;
  
-@@ -576,8 +647,8 @@
+@@ -605,8 +647,8 @@
  			vdd_logic: DCDC_REG1 {
  				regulator-always-on;
  				regulator-boot-on;
 -				regulator-min-microvolt = <950000>;
--				regulator-max-microvolt = <1150000>;
+-				regulator-max-microvolt = <1175000>;
 +				regulator-min-microvolt = <850000>;
 +				regulator-max-microvolt = <1350000>;
  				regulator-ramp-delay = <6001>;
  				regulator-initial-mode = <0x2>;
  				regulator-name = "vdd_logic";
-@@ -590,7 +661,7 @@
+@@ -619,8 +661,8 @@
  			vdd_arm: DCDC_REG2 {
  				regulator-always-on;
  				regulator-boot-on;
 -				regulator-min-microvolt = <950000>;
+-				regulator-max-microvolt = <1400000>;
 +				regulator-min-microvolt = <850000>;
- 				regulator-max-microvolt = <1350000>;
++				regulator-max-microvolt = <1350000>;
  				regulator-ramp-delay = <6001>;
  				regulator-initial-mode = <0x2>;
-@@ -614,20 +685,20 @@
+ 				regulator-name = "vdd_arm";
+@@ -643,20 +685,20 @@
  			vcc_3v3: DCDC_REG4 {
  				regulator-always-on;
  				regulator-boot-on;
@@ -745,7 +804,7 @@ index 7c63c70f3..4a78ba359 100644
  				regulator-name = "vcc_1v0";
  				regulator-state-mem {
  					regulator-off-in-suspend;
-@@ -664,13 +735,13 @@
+@@ -693,13 +735,13 @@
  			vcc3v3_pmu: LDO_REG4 {
  				regulator-always-on;
  				regulator-boot-on;
@@ -762,7 +821,7 @@ index 7c63c70f3..4a78ba359 100644
  
  				};
  			};
-@@ -679,68 +750,65 @@
+@@ -708,68 +750,65 @@
  				regulator-always-on;
  				regulator-boot-on;
  				regulator-min-microvolt = <1800000>;
@@ -848,7 +907,7 @@ index 7c63c70f3..4a78ba359 100644
  				regulator-max-microvolt = <5400000>;
  				regulator-name = "boost";
  			};
-@@ -753,34 +821,19 @@
+@@ -782,34 +821,19 @@
  
  		battery {
  			compatible = "rk817,battery";
@@ -888,7 +947,7 @@ index 7c63c70f3..4a78ba359 100644
  		};
  
  		charger {
-@@ -790,27 +843,29 @@
+@@ -819,27 +843,29 @@
  			max_chrg_current = <2000>;
  			max_chrg_voltage = <4200>;
  			chrg_term_mode = <0>;
@@ -924,7 +983,7 @@ index 7c63c70f3..4a78ba359 100644
  			status = "okay";
  		};
  	};
-@@ -824,7 +879,26 @@
+@@ -853,7 +879,26 @@
  
  /* MIPI CSI I2C */
  &i2c2 {
@@ -952,7 +1011,7 @@ index 7c63c70f3..4a78ba359 100644
  };
  
  /* I2S 1 Channel Used */
-@@ -838,7 +912,7 @@
+@@ -867,7 +912,7 @@
  	status = "okay";
  
  	/* SDIO I/O Voltage */
@@ -961,7 +1020,7 @@ index 7c63c70f3..4a78ba359 100644
  	/* SDMMC I/O Voltage */
  	vccio2-supply = <&vccio_sd>;
  	/* CAM I/O Voltage */
-@@ -857,6 +931,52 @@
+@@ -886,6 +931,52 @@
  
  &mipi_dphy_rx0 {
  	status = "okay";
@@ -1014,7 +1073,7 @@ index 7c63c70f3..4a78ba359 100644
  };
  
  &pmu_io_domains {
-@@ -879,15 +999,6 @@
+@@ -908,15 +999,6 @@
  	status = "okay";
  };
  
@@ -1030,7 +1089,7 @@ index 7c63c70f3..4a78ba359 100644
  &rk_rga {
  	status = "okay";
  };
-@@ -927,23 +1038,6 @@
+@@ -956,23 +1038,6 @@
  	status = "okay";
  };
  
@@ -1054,7 +1113,7 @@ index 7c63c70f3..4a78ba359 100644
  &tsadc {
  	pinctrl-names = "gpio", "otpout";
  	pinctrl-0 = <&tsadc_otp_gpio>;
-@@ -994,6 +1088,12 @@
+@@ -1023,6 +1088,12 @@
  };
  
  &pinctrl {
@@ -1067,7 +1126,7 @@ index 7c63c70f3..4a78ba359 100644
  
  	pmic {
  		/* ODROID-GO2 : PMIC_INT(GPIO0.PB2) */
-@@ -1031,6 +1131,7 @@
+@@ -1060,6 +1131,7 @@
  					<1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
@@ -1075,7 +1134,7 @@ index 7c63c70f3..4a78ba359 100644
  					<1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
-@@ -1044,8 +1145,30 @@
+@@ -1073,8 +1145,30 @@
  					<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
  					<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,

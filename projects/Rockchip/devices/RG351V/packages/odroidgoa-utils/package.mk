@@ -21,7 +21,8 @@ makeinstall_target() {
 	cp volume_sense.sh ${INSTALL}/usr/bin
 		cp adckeys.py ${INSTALL}/usr/bin
 	cp joyled.sh ${INSTALL}/usr/bin
-    	chmod 0755 ${INSTALL}/usr/bin/*
+		cp retrorun_adckeys.sh ${INSTALL}/usr/bin
+    chmod 0755 ${INSTALL}/usr/bin/*
 }
 
 post_install() {  

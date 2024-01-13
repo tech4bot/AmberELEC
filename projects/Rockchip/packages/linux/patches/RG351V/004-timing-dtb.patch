@@ -1,7 +1,7 @@
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-index 7c63c70f3..4a78ba359 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-timing_fix.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-timing_fix.dts
+index 7516ab934..4a78ba359 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-timing_fix.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-timing_fix.dts
 @@ -23,23 +23,245 @@
                  bootargs = "";
  	};
@@ -538,21 +538,21 @@ index 7c63c70f3..4a78ba359 100644
 -			15 00 02 42 80
 -			15 00 02 43 81
 -			15 00 02 44 11
--			15 00 02 45 E6
--			15 00 02 46 E5
+-			15 00 02 45 F2
+-			15 00 02 46 F1
 -			15 00 02 47 11
--			15 00 02 48 E8
--			15 00 02 49 E7
+-			15 00 02 48 F4
+-			15 00 02 49 F3
 -			15 00 02 50 02
 -			15 00 02 51 01
 -			15 00 02 52 04
 -			15 00 02 53 03
 -			15 00 02 54 11
--			15 00 02 55 EA
--			15 00 02 56 E9
+-			15 00 02 55 F6
+-			15 00 02 56 F5
 -			15 00 02 57 11
--			15 00 02 58 EC
--			15 00 02 59 EB
+-			15 00 02 58 F8
+-			15 00 02 59 F7
 -			15 00 02 7E 02
 -			15 00 02 7F 80
 -			15 00 02 E0 5A
@@ -630,19 +630,18 @@ index 7c63c70f3..4a78ba359 100644
  			native-mode = <&timing0>;
  
  			timing0: timing0 {
--				clock-frequency = <26400000>;
+-				clock-frequency = <27500000>;
 +				clock-frequency = <33000000>;
  				hactive = <640>;
  				vactive = <480>;
--				hfront-porch = <119>;
+-				hfront-porch = <50>;
 +				hfront-porch = <120>;
  				hsync-len = <2>;
--				hback-porch = <119>;
--				vfront-porch = <13>;
+-				hback-porch = <90>;
 +				hback-porch = <120>;
-+				vfront-porch = <18>;
+ 				vfront-porch = <18>;
  				vsync-len = <2>;
--				vback-porch = <5>;
+-				vback-porch = <86>;
 -				hsync-active = <0>;
 -				vsync-active = <0>;
 +				vback-porch = <20>;
