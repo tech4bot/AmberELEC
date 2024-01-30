@@ -7,7 +7,7 @@ index b91cf0624b..da433890e5 100644
 
          case GO2_ROTATION_DEGREES_90:
 -            src.rotation = HAL_TRANSFORM_ROT_90;
-+            src.rotation = 0;
++            src.rotation = HAL_TRANSFORM_ROT_90;
              break;
 
          case GO2_ROTATION_DEGREES_180:
