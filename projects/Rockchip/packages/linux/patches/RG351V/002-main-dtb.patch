@@ -1,5 +1,5 @@
 diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-index 7c63c70f3..97e9ebfee 100644
+index 7c63c70f3..1d8788c76 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
 @@ -6,1048 +6,1172 @@
@@ -1191,10 +1191,10 @@ index 7c63c70f3..97e9ebfee 100644
 +		 /* poll device interval (ms), adc read interval */
 +		 poll-interval = <100>;
 + 
-+		 /* required for RG351MP  */
++		 /* required for RG351MP  
 +		 invert-absx;
 +		 invert-absrx;
-+ 
++		 */
 +		 /* gpio button auto repeat set value : default disable */
 +		 /**/
 +			 autorepeat;
@@ -1499,7 +1499,7 @@ index 7c63c70f3..97e9ebfee 100644
 +				   MIPI_DSI_MODE_EOT_PACKET)>;
 + 
 +		 dsi,format = <MIPI_DSI_FMT_RGB888>;
-+		 dsi,lanes = <4>;
++		 dsi,lanes = <2>;
 + 
 +		 /*
 +			 - panel-init-sequence data description -
