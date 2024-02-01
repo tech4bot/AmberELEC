@@ -76,7 +76,7 @@ makeinstall_target() {
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351p-uboot.dtb ${INSTALL}/usr/share/bootloader
     elif [ "${DEVICE}" == "RG351V" ]; then
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351v-uboot.dtb ${INSTALL}/usr/share/bootloader
-    elif [ "${DEVICE}" == "RG351MP" ]; then
+    elif [ "${DEVICE}" == "RG351MP" ] || [ "${DEVICE}" == "D007" ]; then
       cp -f ${PKG_BUILD}/arch/arm/dts/rg351mp-uboot.dtb ${INSTALL}/usr/share/bootloader
     fi
 }

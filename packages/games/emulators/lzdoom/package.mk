@@ -10,7 +10,7 @@ PKG_DEPENDS_TARGET="toolchain SDL2 lzdoom:host"
 PKG_LONGDESC="ZDoom is a family of enhanced ports of the Doom engine for running on modern operating systems. It runs on Windows, Linux, and OS X, and adds new features not found in the games as originally published by id Software."
 PKG_TOOLCHAIN="cmake-make"
 
-if [ "${DEVICE}" = "RG351MP" ] || [ "${DEVICE}" = "RG552" ]
+if [ "${DEVICE}" = "RG351MP" ] || [ "${DEVICE}" = "RG552" ] || [ "${DEVICE}" = "D007" ]
 then
   PKG_PATCH_DIRS="RG351MP"
 fi

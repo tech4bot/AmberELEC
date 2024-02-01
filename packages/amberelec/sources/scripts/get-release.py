@@ -384,7 +384,7 @@ def get_args():
                              "beta" is for backwards compatibility and will map to 'prerelease'
                              ''')
     parser.add_argument('--device',
-                        choices=['RG351P', 'RG351V', 'RG351MP'],
+                        choices=['RG351P', 'RG351V', 'RG351MP', 'D007'],
                         help=f'Sets the appropriate device for testing.  Will fallback to contents of: {DEVICE_FILE}')
     parser.add_argument('--console',
                         default="/dev/console",

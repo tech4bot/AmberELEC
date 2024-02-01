@@ -25,6 +25,7 @@ Visit us on our Discord! https://discord.com/invite/R9Er7hkRMe
 - Gameconsole R33S *** ([pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases))
 - Gameconsole R35S *** ([pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases))
 - Gameconsole R36S *** ([pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases))
+- SZDiiER D007 Plus ([pre-release image](https://github.com/AmberELEC/AmberELEC-prerelease/releases))
 
   - \* use the RG351P image
   - ** newer devices with the V2 display require manual replacement of the device dtb file on your microSD card

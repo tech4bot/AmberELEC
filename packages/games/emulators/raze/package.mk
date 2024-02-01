@@ -10,7 +10,7 @@ PKG_DEPENDS_TARGET="toolchain SDL2 raze:host zmusic libvpx"
 PKG_LONGDESC="Raze is a fork of Build engine games backed by GZDoom tech and combines Duke Nukem 3D, Blood, Redneck Rampage, Shadow Warrior and Exhumed/Powerslave in a single package."
 PKG_TOOLCHAIN="cmake-make"
 
-if [ ! "${DEVICE}" = "RG351MP" ] && [ ! "${DEVICE}" = "RG552" ]
+if [ ! "${DEVICE}" = "RG351MP" ] && [ ! "${DEVICE}" = "RG552" ] && [ ! "${DEVICE}" = "D007" ]
 then
   PKG_PATCH_DIRS="RG351P"
 fi
@@ -54,7 +54,7 @@ makeinstall_target() {
   cp ${PKG_BUILD}/.${TARGET_NAME}/raze ${INSTALL}/usr/bin
 
   mkdir -p ${INSTALL}/usr/config/distribution/raze
-  if [ "${DEVICE}" = "RG351MP" ] || [ "${DEVICE}" = "RG552" ]; then
+  if [ "${DEVICE}" = "RG351MP" ] || [ "${DEVICE}" = "RG552" ] || [ "${DEVICE}" = "D007" ]; then
     cp ${PKG_DIR}/config/RG351MP/* ${INSTALL}/usr/config/distribution/raze
   else
     cp ${PKG_DIR}/config/RG351P/* ${INSTALL}/usr/config/distribution/raze

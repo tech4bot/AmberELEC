@@ -75,7 +75,7 @@ fi
 if [[ "$EE_DEVICE" == RG351P ]]; then
   params+=" -width 360 -height 240 +vid_fps $SHOWFPS +cl_capfps 0 +vid_renderer 0 +vid_glswfb 0"
 fi
-if [[ "$EE_DEVICE" == RG351V ]] || [[ "$EE_DEVICE" == RG351MP ]] || [[ "$EE_DEVICE" == RG552 ]]; then
+if [[ "$EE_DEVICE" == RG351V ]] || [[ "$EE_DEVICE" == RG351MP ]] || [[ "$EE_DEVICE" == RG552 ]] || [[ "$EE_DEVICE" == D007 ]]; then
   params+=" -width 320 -height 240 +vid_fps $SHOWFPS +cl_capfps 0 +vid_renderer 0 +vid_glswfb 0"
 fi
 
