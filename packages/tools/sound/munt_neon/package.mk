@@ -14,7 +14,7 @@ PKG_CMAKE_OPTS_TARGET="-Dmunt_WITH_MT32EMU_QT=0 \
 
 
 pre_configure_target() {
-if [ "${DEVICE}" == "OdroidGoAdvance" ] || [[ "${DEVICE}" =~ RG351 ]]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" ] || [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" =~ D007 ]]; then
 sed -i -e "s/cortex-a7/cortex-a35/" ${PKG_BUILD}/mt32emu_alsadrv/Makefile
 else
 sed -i -e "s/cortex-a7/cortex-a53/" ${PKG_BUILD}/mt32emu_alsadrv/Makefile

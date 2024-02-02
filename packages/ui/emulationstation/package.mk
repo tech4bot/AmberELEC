@@ -72,7 +72,7 @@ makeinstall_target() {
 	find ${INSTALL}/usr/config/emulationstation/scripts/ -type f -exec chmod o+x {} \;
 
 	# Vertical Games are only supported in the OdroidGoAdvance
-    if [[ ${DEVICE} != "OdroidGoAdvance" ]] || [[ ${DEVICE} =~ RG351 ]]; then
+    if [[ ${DEVICE} != "OdroidGoAdvance" ]] || [[ ${DEVICE} =~ RG351 ]] || [[ ${DEVICE} =~ D007 ]]; then
         sed -i "s|, vertical||g" "${INSTALL}/usr/config/emulationstation/es_features.cfg"
     fi
 }

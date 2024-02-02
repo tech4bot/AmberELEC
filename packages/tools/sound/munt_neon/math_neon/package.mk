@@ -15,7 +15,7 @@ PKG_TOOLCHAIN="make"
 PKG_MAKE_OPTS_TARGET="all"
 
 pre_configure_target() {
-if [ "${DEVICE}" == "OdroidGoAdvance" ] || [[ "${DEVICE}" =~ RG351 ]]; then
+if [ "${DEVICE}" == "OdroidGoAdvance" ] || [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" =~ D007 ]]; then
 sed -i -e "s/cortex-a7/cortex-a35/" ${PKG_BUILD}/Makefile
 else
 sed -i -e "s/cortex-a7/cortex-a53/" ${PKG_BUILD}/Makefile

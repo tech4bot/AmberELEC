@@ -15,7 +15,7 @@ PKG_GIT_CLONE_BRANCH="master"
 pre_configure_target() {
   cd ${PKG_BUILD}
 
-  if [[ "${DEVICE}" =~ RG351 ]]
+  if [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" =~ D007 ]]
   then
     AMIBERRY_PLATFORM="PLATFORM=RK3326"
   elif [[ "${DEVICE}" == RG552 ]]
