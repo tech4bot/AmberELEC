@@ -30,10 +30,10 @@
 
   # Additional kernel make parameters (for example to specify the u-boot loadaddress)
     KERNEL_MAKE_EXTRACMD=""
-    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-d007-linux.dtb"
-    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-d007-linux-oc.dtb"
-    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-d007-linux-timing_fix.dtb"
-    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-d007-linux-oc-timing_fix.dtb"
+    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-rg351v-linux.dtb"
+    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-rg351v-linux-oc.dtb"
+    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-rg351v-linux-timing_fix.dtb"
+    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-rg351v-linux-oc-timing_fix.dtb"
 
   # Mali GPU family
     MALI_FAMILY="g31"
@@ -42,8 +42,8 @@
   # kernel serial console
     EXTRA_CMDLINE="console=ttyFIQ0 console=tty0 net.iframes=0 fbcon=rotate:0 ssh consoleblank=0 systemd.show_status=0 loglevel=0 panic=20"
 
-    LINUX="RG351MP"
-    UBOOT_SYSTEM="rg351mp"
+    LINUX="RG351V"
+    UBOOT_SYSTEM="rg351v"
 
   # additional packages to install
     ADDITIONAL_PACKAGES="dtc amberelec"
