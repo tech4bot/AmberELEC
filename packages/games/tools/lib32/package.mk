@@ -13,6 +13,6 @@ PKG_TOOLCHAIN="manual"
 makeinstall_target() {
   mkdir -p ${INSTALL}/usr/lib32
   cd ${PKG_BUILD}
-  tar xvfz lib32_${DEVICE}.tar.gz
+  tar xvfz lib32_RG351MP.tar.gz
   cp -rfv usr/lib32/* ${INSTALL}/usr/lib32
 }

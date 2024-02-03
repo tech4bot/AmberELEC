@@ -51,6 +51,7 @@ devices = {
     },
     'D007' : {
       'd007' : { 'dtb' : 'rk3326-rg351v-linux.dtb', 'config' : 'odroidgoa_defconfig' },
+      'd007-oc' : { 'dtb' : 'rk3326-rg351v-linux-oc.dtb', 'config' : 'odroidgoa_defconfig' },
     },
     'RK3328' : {
       'box' : { 'dtb' : 'rk3328-box.dtb', 'config' : 'evb-rk3328_defconfig' },
