@@ -15,15 +15,19 @@ PKG_TOOLCHAIN="manual"
 
 makeinstall_target() {
 	mkdir -p ${INSTALL}/usr/bin
-#	cp headphone_sense.sh ${INSTALL}/usr/bin
-	cp battery.sh ${INSTALL}/usr/bin
+        cp headphone_sense.sh ${INSTALL}/usr/bin
+    cp battery.sh ${INSTALL}/usr/bin
         cp odroidgoa_utils.sh ${INSTALL}/usr/bin
-	cp volume_sense.sh ${INSTALL}/usr/bin
+    cp volume_sense.sh ${INSTALL}/usr/bin
+        cp adckeys.py ${INSTALL}/usr/bin
+    cp joyled.sh ${INSTALL}/usr/bin
         chmod 0755 ${INSTALL}/usr/bin/*
 }
 
 post_install() {  
-	enable_service volume.service
-#	enable_service headphones.service
-	enable_service battery.service
+    enable_service volume.service
+    enable_service headphones.service
+    enable_service battery.service
+    enable_service adckeys.service
+    enable_service joyled.service
 }
