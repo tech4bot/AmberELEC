@@ -9,6 +9,10 @@ PKG_URL="${PKG_SITE}.git"
 PKG_DEPENDS_TARGET="toolchain libdrm libpng linux libevdev librga openal-soft"
 PKG_TOOLCHAIN="make"
 
+if [[ "${DEVICE}" == RG351V ]]; then
+  PKG_PATCH_DIRS="${DEVICE}"
+fi
+
 pre_configure_target() {
   CFLAGS+=" -I$(get_build_dir libdrm)/include/drm"
   CFLAGS+=" -I$(get_build_dir linux)/include/uapi"
