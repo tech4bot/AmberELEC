@@ -79,8 +79,12 @@ makeinstall_target() {
 
   echo "${LIBREELEC_VERSION}" > ${INSTALL}/usr/config/.OS_VERSION
 
-  echo "${DEVICE}" > ${INSTALL}/usr/config/.OS_ARCH
-
+  if [ "${DEVICE}" == "D007" ]; then
+    echo "RG351MP" > ${INSTALL}/usr/config/.OS_ARCH
+  else
+    echo "${DEVICE}" > ${INSTALL}/usr/config/.OS_ARCH
+  fi
+  
   echo "$(date)" > ${INSTALL}/usr/config/.OS_BUILD_DATE
 
   mkdir -p ${INSTALL}/usr/bin/

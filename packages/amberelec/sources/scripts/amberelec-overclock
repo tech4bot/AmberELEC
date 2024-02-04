@@ -13,7 +13,7 @@ elif [ "$DEVICE" == "RG351V" ]; then
 elif [ "$DEVICE" == "RG351MP" ]; then
   BASEDTB="rk3326-rg351mp-linux"
 elif [ "$DEVICE" == "D007" ]; then
-  BASEDTB="rk3326-d007-linux"
+  BASEDTB="rk3326-rg351v-linux"
 fi
 
 MOUNT="/flash"

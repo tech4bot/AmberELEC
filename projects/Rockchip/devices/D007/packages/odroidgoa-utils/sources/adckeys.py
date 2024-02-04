@@ -12,7 +12,7 @@ input_device = '/dev/input/by-path/platform-odroidgo3-joypad-event-joystick'  # 
 
 # Specify the keys you want to simulate
 key1_code = 0x2c0  # BTN_TRIGGER_HAPPY1 code, replace with your desired code
-key2_code = 0x2c5  # BTN_TRIGGER_HAPPY6 code, replace with your desired code
+key2_code = 0x2c1  # BTN_TRIGGER_HAPPY2 code, replace with your desired code
 
 def main(argument):
     if argument == "select":
