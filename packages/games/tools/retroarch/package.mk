@@ -9,11 +9,11 @@ PKG_LICENSE="GPLv3"
 PKG_DEPENDS_TARGET="toolchain SDL2 alsa-lib openssl freetype zlib retroarch-assets core-info ffmpeg libass joyutils empty ${OPENGLES} nss-mdns openal-soft libogg libvorbis libvorbisidec libvpx libpng libdrm librga pulseaudio flac"
 PKG_LONGDESC="Reference frontend for the libretro API."
 
-if [[ "${DEVICE}" == RG351V ]]; then
+if [[ "${DEVICE}" == RG351V ]] || [[ "${DEVICE}" =~ D007 ]]; then
   PKG_PATCH_DIRS="${DEVICE}"
 fi
 
-if [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" =~ D007 ]]; then
+if [[ "${DEVICE}" =~ RG351 ]]; then
   PKG_PATCH_DIRS="RG351-ui-patches"
 fi
 

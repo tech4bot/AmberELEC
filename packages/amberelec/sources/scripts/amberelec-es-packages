@@ -22,7 +22,7 @@ elif [ "${ARCH}" == "RG351MP" ]; then
 elif [ "${ARCH}" == "RG552" ]; then
   DEVICE="RG552"
 elif [ "${ARCH}" == "D007" ]; then
-  DEVICE="D007"
+  DEVICE="RG351MP"
 fi
 DISTRO="AmberELEC"
 CONFIGDIR="/storage/.config/packages"
