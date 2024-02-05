@@ -1,26 +1,51 @@
-diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx.c
-index 856aa0f9a2..a7121bed8d 100644
---- a/gfx/drivers_context/drm_go2_ctx.c
-+++ b/gfx/drivers_context/drm_go2_ctx.c
-@@ -118,8 +118,8 @@ static void *gfx_ctx_go2_drm_init(void *video_driver)
+diff --git a/deps/libgo2/src/display.c b/deps/libgo2/src/display.c
+index b91cf0624b..689198333a 100644
+--- a/deps/libgo2/src/display.c
++++ b/deps/libgo2/src/display.c
+@@ -593,7 +593,7 @@ void go2_surface_blit(go2_surface_t* srcSurface, int srcX, int srcY, int srcWidt
+     switch (rotation)
+     {
+         case GO2_ROTATION_DEGREES_0:
+-            src.rotation = 0;
++            src.rotation = HAL_TRANSFORM_ROT_90;
+             break;
  
-    drm->display       = go2_display_create();
+         case GO2_ROTATION_DEGREES_90:
+@@ -601,11 +601,11 @@ void go2_surface_blit(go2_surface_t* srcSurface, int srcX, int srcY, int srcWidt
+             break;
  
--   drm->native_width  = go2_display_height_get(drm->display);
--   drm->native_height = go2_display_width_get(drm->display);
-+   drm->native_width  = go2_display_width_get(drm->display);
-+   drm->native_height = go2_display_height_get(drm->display);
+         case GO2_ROTATION_DEGREES_180:
+-            src.rotation = HAL_TRANSFORM_ROT_180;
++            src.rotation = HAL_TRANSFORM_ROT_90;
+             break;
  
-    /* This driver should only be used on rotated screens */
-    if (drm->native_width < drm->native_height)
-@@ -345,8 +345,8 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
-    go2_presenter_post(drm->presenter,
-          surf,
-          src_x, src_y, src_w, src_h,
--         out_y, out_x, out_h, out_w,
--         GO2_ROTATION_DEGREES_270, 2);
-+         out_x, out_y, out_w, out_h,
-+         GO2_ROTATION_DEGREES_90, 2);
-    go2_context_surface_unlock(drm->context, surf);
- #endif
- }
+         case GO2_ROTATION_DEGREES_270:
+-            src.rotation = HAL_TRANSFORM_ROT_270;
++            src.rotation = HAL_TRANSFORM_ROT_90;
+             break;
+ 
+         default:
+diff --git a/gfx/drivers/oga_gfx.c b/gfx/drivers/oga_gfx.c
+index bb71b27159..42b2934ad8 100644
+--- a/gfx/drivers/oga_gfx.c
++++ b/gfx/drivers/oga_gfx.c
+@@ -708,16 +708,16 @@ static void oga_set_rotation(void *data, unsigned rotation)
+    switch (rotation)
+    {
+    case 0:
+-      vid->rotation = HAL_TRANSFORM_ROT_270;
++      vid->rotation = HAL_TRANSFORM_ROT_90;
+       break;
+    case 1:
+-      vid->rotation = HAL_TRANSFORM_ROT_180;
++      vid->rotation = HAL_TRANSFORM_ROT_90;
+       break;
+    case 2:
+       vid->rotation = HAL_TRANSFORM_ROT_90;
+       break;
+    case 3:
+-      vid->rotation = 0;
++      vid->rotation = HAL_TRANSFORM_ROT_90;
+       break;
+    default:
+       RARCH_ERR("Unhandled rotation %hu\n", rotation);
