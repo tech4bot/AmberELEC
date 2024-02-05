@@ -3,10 +3,10 @@
 # Copyright (C) 2021 AmberELEC (https://github.com/AmberELEC)
 
 PKG_NAME="es-theme-art-book-next"
-PKG_VERSION="5dd03b78afcd9cb0e087bc54ff008182e4cde7c0"
+PKG_VERSION="fe50cc80c05168cc1a84b6adac023bb1a9068b43"
 PKG_ARCH="any"
 PKG_LICENSE="CUSTOM"
-PKG_SITE="https://github.com/anthonycaccese/art-book-next-batocera"
+PKG_SITE="https://github.com/anthonycaccese/art-book-next-es"
 PKG_URL="${PKG_SITE}.git"
 PKG_SHORTDESC="ArtBook Next"
 PKG_LONGDESC="Art Book Next - AmberELEC default theme"
