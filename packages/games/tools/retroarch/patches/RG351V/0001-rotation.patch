@@ -1,0 +1,33 @@
+diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx.c
+index 856aa0f9a2..2e90673087 100644
+--- a/gfx/drivers_context/drm_go2_ctx.c
++++ b/gfx/drivers_context/drm_go2_ctx.c
+@@ -314,11 +314,9 @@ static bool gfx_ctx_go2_drm_suppress_screensaver(void *data, bool enable) { retu
+ static void gfx_ctx_go2_drm_swap_buffers(void *data)
+ {
+ #ifdef HAVE_EGL
+-   go2_surface_t* 
+-      surf   = NULL;
++   go2_surface_t* surf = NULL;
+ #endif
+-   gfx_ctx_go2_drm_data_t 
+-      *drm   = (gfx_ctx_go2_drm_data_t*)data;
++   gfx_ctx_go2_drm_data_t *drm = (gfx_ctx_go2_drm_data_t*)data;
+ 
+    int out_w = drm->native_width;
+    int out_h = drm->native_height;
+@@ -341,12 +339,12 @@ static void gfx_ctx_go2_drm_swap_buffers(void *data)
+ 
+ #ifdef HAVE_EGL
+    go2_context_swap_buffers(drm->context);
+-   surf     = go2_context_surface_lock(drm->context);
++   surf = go2_context_surface_lock(drm->context);
+    go2_presenter_post(drm->presenter,
+          surf,
+          src_x, src_y, src_w, src_h,
+          out_y, out_x, out_h, out_w,
+-         GO2_ROTATION_DEGREES_270, 2);
++         GO2_ROTATION_DEGREES_90, 2); // Change rotation to 90 degrees
+    go2_context_surface_unlock(drm->context, surf);
+ #endif
+ }
