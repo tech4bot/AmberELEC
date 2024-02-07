@@ -29,7 +29,7 @@ index 856aa0f9a2..06fc2f0890 100644
 -         out_y, out_x, out_h, out_w,
 -         GO2_ROTATION_DEGREES_270, 2);
 +         out_x, out_y, out_w, out_h,
-+         GO2_ROTATION_DEGREES_90, 2);
++         GO2_ROTATION_DEGREES_180, 2);
     go2_context_surface_unlock(drm->context, surf);
  #endif
  }
