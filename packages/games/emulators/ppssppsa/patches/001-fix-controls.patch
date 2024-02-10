@@ -1,8 +1,31 @@
 diff --git a/Core/KeyMapDefaults.cpp b/Core/KeyMapDefaults.cpp
-index 7862341e3..8d899ea78 100644
+index 3c08f2c94..e04da0d87 100644
 --- a/Core/KeyMapDefaults.cpp
 +++ b/Core/KeyMapDefaults.cpp
-@@ -229,18 +229,18 @@ static const DefMappingStruct defaultPadMapAndroid[] = {
+@@ -25,11 +25,11 @@ static const DefMappingStruct defaultQwertyKeyboardKeyMap[] = {
+ 	{CTRL_LTRIGGER, NKCODE_Q},
+ 	{CTRL_RTRIGGER, NKCODE_W},
+ 
+-	{CTRL_START, NKCODE_SPACE},
++	{CTRL_START, NKCODE_ENTER},
+ #ifdef _WIN32
+ 	{CTRL_SELECT, NKCODE_V},
+ #else
+-	{CTRL_SELECT, NKCODE_ENTER},
++	{CTRL_SELECT, NKCODE_SHIFT_RIGHT},
+ #endif
+ 	{CTRL_UP   , NKCODE_DPAD_UP},
+ 	{CTRL_DOWN , NKCODE_DPAD_DOWN},
+@@ -44,7 +44,7 @@ static const DefMappingStruct defaultQwertyKeyboardKeyMap[] = {
+ 	{VIRTKEY_SPEED_TOGGLE, NKCODE_GRAVE},
+ 	{VIRTKEY_PAUSE       , NKCODE_ESCAPE},
+ 	{VIRTKEY_REWIND      , NKCODE_DEL},
+-	{VIRTKEY_ANALOG_LIGHTLY, NKCODE_SHIFT_RIGHT},
++	{VIRTKEY_ANALOG_LIGHTLY, NKCODE_SPACE},
+ };
+ 
+ static const DefMappingStruct defaultAzertyKeyboardKeyMap[] = {
+@@ -255,18 +255,18 @@ static const DefMappingStruct defaultPadMapAndroid[] = {
  };
  
  static const DefMappingStruct defaultPadMap[] = {
