@@ -76,7 +76,6 @@ else
   TEMPE=$(cat /sys/devices/virtual/thermal/thermal_zone*/temp 2>/dev/null | sort -rn | head -1 | sed -e s+"[0-9][0-9][0-9]$"++)
 fi
 
-
 echo "OPERATING SYSTEM: ${V_OS}"
 echo "DEVICE: ${V_DEVICE}"
 echo "CPU: ${V_CPUMODEL1} (${V_CPUNB} Cores)"
@@ -98,6 +97,14 @@ else
   echo "CURRENT FREQUENCY (LITTLE): ${V_CPUFREQL}MHz"
   echo "MAXIMUM FREQUENCY (LITTLE): ${V_CPUMAXFREQL}MHz"
 fi
+ram_mem=$(free -m)
+# Extract total and free memory values
+total_memory=$(echo "$ram_mem" | awk '/Mem:/ {print $2}')
+free_memory=$(echo "$ram_mem" | awk '/Mem:/ {print $4}')
+# Convert total memory to GB
+total_memory_gb=$(echo "scale=2; $total_memory / 1024" | bc)
+# Print the formatted output
+echo "RAM: ${free_memory}MB/${total_memory_gb}GB"
 echo "KERNEL: ${V_SYSTEM} (${V_ARCH})"
 echo "OS ARCHITECTURE: ${V_OSARCH}"
 echo "OS BUILD ID: ${BUILD_ID:0:7}"
