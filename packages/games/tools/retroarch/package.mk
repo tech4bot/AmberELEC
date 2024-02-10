@@ -13,7 +13,7 @@ if [[ "${DEVICE}" == RG351V ]] || [[ "${DEVICE}" =~ D007 ]]; then
   PKG_PATCH_DIRS="${DEVICE}"
 fi
 
-if [[ "${DEVICE}" =~ RG351 ]]; then
+if [[ "${DEVICE}" =~ RG351 ]] || [[ "${DEVICE}" =~ D007 ]]; then
   PKG_PATCH_DIRS="RG351-ui-patches"
 fi
 
