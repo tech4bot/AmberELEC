@@ -1,7 +1,7 @@
-diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-index 7c63c70f3..d446f7b61 100644
---- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux.dts
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc.dts b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc.dts
+index 85f303f51..ac95c9e00 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-rg351v-linux-oc.dts
 @@ -23,23 +23,245 @@
                  bootargs = "";
  	};
@@ -250,7 +250,7 @@ index 7c63c70f3..d446f7b61 100644
 +                        linux,code = <BTN_TRIGGER_HAPPY2>; //NOT mapped
 +                };
 +				sw23 { //sw23 non existing
-+                        gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_LOW>;
++                        gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_LOW>;
 +                        label = "GPIO F4";
 +                        linux,code = <BTN_TRIGGER_HAPPY6>; //NOT mapped
 +                };
@@ -259,11 +259,13 @@ index 7c63c70f3..d446f7b61 100644
  	fiq-debugger {
  		compatible = "rockchip,fiq-debugger";
  		rockchip,serial-id = <2>;
-@@ -53,11 +275,31 @@
+@@ -51,13 +273,33 @@
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&uart2m1_xfer>;
  		status = "okay";
- 	};
- 
-+	leds: gpio_leds {
++	};
++
++		leds: gpio_leds {
 +		compatible = "gpio-leds";
 +		status = "okay";
 +
@@ -281,8 +283,8 @@ index 7c63c70f3..d446f7b61 100644
 +		};
 +
 +
-+	};
-+
+ 	};
+ 
  	backlight: backlight {
  		compatible = "pwm-backlight";
 -		pwms = <&pwm1 0 62745 0>;
@@ -346,21 +348,7 @@ index 7c63c70f3..d446f7b61 100644
  		simple-audio-card,codec-hp-det = <1>;
  		simple-audio-card,cpu {
  			sound-dai = <&i2s1_2ch>;
-@@ -109,6 +356,13 @@
- 			sound-dai = <&rk817_codec>;
- 		};
- 	};
-+/*
-+	rk_headset {
-+		compatible = "rockchip_headset";
-+		headset_gpio = <&gpio2 RK_PB3 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hp_det>;
-+	};*/
- 
- 	vccsys: vccsys {
- 		compatible = "regulator-fixed";
-@@ -118,7 +372,7 @@
+@@ -118,7 +365,7 @@
  		regulator-max-microvolt = <3800000>;
  	};
  
@@ -369,7 +357,7 @@ index 7c63c70f3..d446f7b61 100644
  		compatible = "regulator-fixed";
  		regulator-name = "vcc_host";
  		regulator-min-microvolt = <5000000>;
-@@ -128,9 +382,15 @@
+@@ -128,9 +375,15 @@
  		enable-active-high;
  		regulator-always-on;
  		vin-supply = <&vccsys>;
@@ -387,7 +375,7 @@ index 7c63c70f3..d446f7b61 100644
  &bus_apll {
  	bus-supply = <&vdd_logic>;
  	status = "okay";
-@@ -164,7 +424,7 @@
+@@ -177,7 +430,7 @@
  	status = "okay";
  
  	panel@0 {
@@ -396,7 +384,7 @@ index 7c63c70f3..d446f7b61 100644
  		reg = <0>;
  
  		/* pwm1 backlight */
-@@ -175,18 +435,18 @@
+@@ -188,18 +441,18 @@
  		power-supply = <&vcc_lcd>;
  
  		/* Rev 0.2 LCD reset gpio GPIO3.C0 */
@@ -423,7 +411,7 @@ index 7c63c70f3..d446f7b61 100644
  
  		dsi,flags = <(MIPI_DSI_MODE_VIDEO           |
  			      MIPI_DSI_MODE_VIDEO_BURST     |
-@@ -224,217 +484,28 @@
+@@ -237,217 +490,28 @@
  			  29: DisplayOn & 50ms wait
  		*/
  
@@ -651,7 +639,7 @@ index 7c63c70f3..d446f7b61 100644
  				de-active = <0>;
  				pixelclk-active = <0>;
  			};
-@@ -446,6 +517,11 @@
+@@ -459,6 +523,11 @@
  	status = "okay";
  };
  
@@ -663,17 +651,7 @@ index 7c63c70f3..d446f7b61 100644
  &dfi {
  	status = "okay";
  };
-@@ -461,16 +537,11 @@
- 	/delete-node/ opp-450000000;
- 
- 	opp-786000000 {
--		opp-hz = /bits/ 64 <786000000>;
--		opp-microvolt = <1125000>;
--		opp-microvolt-L0 = <1125000>;
--		opp-microvolt-L1 = <1075000>;
--		opp-microvolt-L2 = <1050000>;
--		opp-microvolt-L3 = <1025000>;
- 		status = "okay";
+@@ -490,6 +559,7 @@
  	};
  };
  
@@ -681,60 +659,27 @@ index 7c63c70f3..d446f7b61 100644
  &emmc {
  	status = "disabled";
  };
-@@ -487,7 +558,7 @@
- 
- &i2c0 {
- 	status = "okay";
--	clock-frequency = <400000>;
-+	clock-frequency = <200000>;
- 	i2c-scl-rising-time-ns = <280>;
- 	i2c-scl-falling-time-ns = <16>;
- 
-@@ -517,7 +588,7 @@
- 		vcc4-supply = <&vccsys>;
- 		vcc5-supply = <&vccsys>;
- 		vcc6-supply = <&vccsys>;
--		vcc7-supply = <&vccsys>;
-+		vcc7-supply = <&vcc_3v3>;
- 		vcc8-supply = <&vccsys>;
- 		vcc9-supply = <&dcdc_boost>;
- 
-@@ -576,8 +647,8 @@
+@@ -605,8 +675,8 @@
  			vdd_logic: DCDC_REG1 {
  				regulator-always-on;
  				regulator-boot-on;
 -				regulator-min-microvolt = <950000>;
--				regulator-max-microvolt = <1150000>;
+-				regulator-max-microvolt = <1175000>;
 +				regulator-min-microvolt = <850000>;
 +				regulator-max-microvolt = <1350000>;
  				regulator-ramp-delay = <6001>;
  				regulator-initial-mode = <0x2>;
  				regulator-name = "vdd_logic";
-@@ -590,7 +661,7 @@
+@@ -619,7 +689,7 @@
  			vdd_arm: DCDC_REG2 {
  				regulator-always-on;
  				regulator-boot-on;
 -				regulator-min-microvolt = <950000>;
 +				regulator-min-microvolt = <850000>;
- 				regulator-max-microvolt = <1350000>;
+ 				regulator-max-microvolt = <1400000>;
  				regulator-ramp-delay = <6001>;
  				regulator-initial-mode = <0x2>;
-@@ -614,20 +685,20 @@
- 			vcc_3v3: DCDC_REG4 {
- 				regulator-always-on;
- 				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
- 				regulator-initial-mode = <0x2>;
- 				regulator-name = "vcc_3v3";
- 				regulator-state-mem {
- 					regulator-off-in-suspend;
--					regulator-suspend-microvolt = <3300000>;
-+					regulator-suspend-microvolt = <3000000>;
- 				};
- 			};
+@@ -655,8 +725,8 @@
  
  			/* Not Used */
  			vcc_1v0: LDO_REG1 {
@@ -745,24 +690,7 @@ index 7c63c70f3..d446f7b61 100644
  				regulator-name = "vcc_1v0";
  				regulator-state-mem {
  					regulator-off-in-suspend;
-@@ -664,13 +735,13 @@
- 			vcc3v3_pmu: LDO_REG4 {
- 				regulator-always-on;
- 				regulator-boot-on;
--				regulator-min-microvolt = <3300000>;
--				regulator-max-microvolt = <3300000>;
-+				regulator-min-microvolt = <3000000>;
-+				regulator-max-microvolt = <3000000>;
- 
- 				regulator-name = "vcc3v3_pmu";
- 				regulator-state-mem {
- 					regulator-on-in-suspend;
--					regulator-suspend-microvolt = <3300000>;
-+					regulator-suspend-microvolt = <3000000>;
- 
- 				};
- 			};
-@@ -679,68 +750,65 @@
+@@ -708,68 +778,65 @@
  				regulator-always-on;
  				regulator-boot-on;
  				regulator-min-microvolt = <1800000>;
@@ -793,8 +721,7 @@ index 7c63c70f3..d446f7b61 100644
  				};
  			};
  
--			/* Rev 0.2 LCD Backlight Power */
-+			/* GO3 : Not used LCD Backlight Power */
+ 			/* Rev 0.2 LCD Backlight Power */
  			vcc_backlight: LDO_REG7 {
 -				regulator-min-microvolt = <3300000>;
 -				regulator-max-microvolt = <3300000>;
@@ -808,8 +735,7 @@ index 7c63c70f3..d446f7b61 100644
  				};
  			};
  
--			/* Rev 0.2 LCD IO Power */
-+			/* Rev 0.1 GO3 LCD IO Power */
+ 			/* Rev 0.2 LCD IO Power */
  			vcc_lcd: LDO_REG8 {
 -				regulator-min-microvolt = <2800000>;
 -				regulator-max-microvolt = <2800000>;
@@ -848,7 +774,7 @@ index 7c63c70f3..d446f7b61 100644
  				regulator-max-microvolt = <5400000>;
  				regulator-name = "boost";
  			};
-@@ -753,34 +821,19 @@
+@@ -782,34 +849,19 @@
  
  		battery {
  			compatible = "rk817,battery";
@@ -888,7 +814,7 @@ index 7c63c70f3..d446f7b61 100644
  		};
  
  		charger {
-@@ -790,27 +843,29 @@
+@@ -819,27 +871,29 @@
  			max_chrg_current = <2000>;
  			max_chrg_voltage = <4200>;
  			chrg_term_mode = <0>;
@@ -924,7 +850,7 @@ index 7c63c70f3..d446f7b61 100644
  			status = "okay";
  		};
  	};
-@@ -824,7 +879,26 @@
+@@ -853,7 +907,26 @@
  
  /* MIPI CSI I2C */
  &i2c2 {
@@ -952,7 +878,7 @@ index 7c63c70f3..d446f7b61 100644
  };
  
  /* I2S 1 Channel Used */
-@@ -838,7 +912,7 @@
+@@ -867,7 +940,7 @@
  	status = "okay";
  
  	/* SDIO I/O Voltage */
@@ -961,7 +887,7 @@ index 7c63c70f3..d446f7b61 100644
  	/* SDMMC I/O Voltage */
  	vccio2-supply = <&vccio_sd>;
  	/* CAM I/O Voltage */
-@@ -857,6 +931,52 @@
+@@ -886,6 +959,52 @@
  
  &mipi_dphy_rx0 {
  	status = "okay";
@@ -1014,7 +940,7 @@ index 7c63c70f3..d446f7b61 100644
  };
  
  &pmu_io_domains {
-@@ -879,15 +999,6 @@
+@@ -908,15 +1027,6 @@
  	status = "okay";
  };
  
@@ -1030,7 +956,7 @@ index 7c63c70f3..d446f7b61 100644
  &rk_rga {
  	status = "okay";
  };
-@@ -927,23 +1038,6 @@
+@@ -956,23 +1066,6 @@
  	status = "okay";
  };
  
@@ -1054,20 +980,7 @@ index 7c63c70f3..d446f7b61 100644
  &tsadc {
  	pinctrl-names = "gpio", "otpout";
  	pinctrl-0 = <&tsadc_otp_gpio>;
-@@ -994,6 +1088,12 @@
- };
- 
- &pinctrl {
-+	/*
-+	headphone {
-+		hp_det: hp-det {
-+			rockchip,pins = <2 RK_PB3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};*/
- 
- 	pmic {
- 		/* ODROID-GO2 : PMIC_INT(GPIO0.PB2) */
-@@ -1031,6 +1131,7 @@
+@@ -1060,6 +1153,7 @@
  					<1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PB7 RK_FUNC_GPIO &pcfg_pull_up>,
@@ -1075,7 +988,7 @@ index 7c63c70f3..d446f7b61 100644
  					<1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<1 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
-@@ -1044,8 +1145,30 @@
+@@ -1073,8 +1167,30 @@
  					<2 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>,
  					<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>,
  					<2 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>,
