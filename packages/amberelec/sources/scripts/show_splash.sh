@@ -35,7 +35,7 @@ then
   if [[ "$(cat /usr/config/.OS_ARCH)" =~ RG351 ]]
   then
     if [ "$(cat /sys/firmware/devicetree/base/model)" == "Anbernic RG351V" ] || [ "$(cat /sys/firmware/devicetree/base/model)" == "Anbernic RG351MP" ]; then
-      SPLASH="/usr/config/splash/splash-640.png"
+      SPLASH="/usr/config/splash/splash-854.png"
     if [ "$(cat /sys/firmware/devicetree/base/model)" == "Anbernic RG552" ]; then
       SPLASH="/usr/config/splash/splash-1920l.png"
     else
