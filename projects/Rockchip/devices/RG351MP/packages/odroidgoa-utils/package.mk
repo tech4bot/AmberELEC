@@ -16,7 +16,7 @@ PKG_TOOLCHAIN="manual"
 makeinstall_target() {
 	mkdir -p ${INSTALL}/usr/bin
 #	cp headphone_sense.sh ${INSTALL}/usr/bin
-	cp battery.sh ${INSTALL}/usr/bin
+#	cp battery.sh ${INSTALL}/usr/bin
         cp odroidgoa_utils.sh ${INSTALL}/usr/bin
 	cp volume_sense.sh ${INSTALL}/usr/bin
         chmod 0755 ${INSTALL}/usr/bin/*

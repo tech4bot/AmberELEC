@@ -26,6 +26,10 @@ if [[ "${DEVICE}" == RG351V ]]; then
   PKG_PATCH_DIRS="${DEVICE}"
 fi
 
+if [[ "${DEVICE}" == RG351MP ]]; then
+  PKG_PATCH_DIRS="${DEVICE}"
+fi
+
 if [[ "${DEVICE}" == RG552 ]]; then
   PKG_PATCH_DIRS="${DEVICE}"
 fi
