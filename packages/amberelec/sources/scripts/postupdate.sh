@@ -415,6 +415,8 @@ elif [ "$(cat /usr/config/.OS_ARCH)" == "RG351V" ] || [ "$(cat /usr/config/.OS_A
 	cp -f /usr/config/splash/splash-640.png /storage/.config/emulationstation/resources/logo.png
 elif [ "$(cat /usr/config/.OS_ARCH)" == "RG552" ]; then
 	cp -f /usr/config/splash/splash-1920l.png /storage/.config/emulationstation/resources/logo.png
+elif [ "$(cat /usr/config/.OS_ARCH)" == "E6" ]; then
+  cp -f /usr/config/splash/splash-854.png /storage/.config/emulationstation/resources/logo.png
 fi
 
 ## clear faulty lines from distribution.conf

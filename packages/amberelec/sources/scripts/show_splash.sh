@@ -10,6 +10,8 @@ if [ "$DEVICE" == "Anbernic RG351V" ] || [ "$DEVICE" == "Anbernic RG351MP" ] || 
   magick /usr/config/splash/splash-640.png bgra:/dev/fb0
 elif [ "$DEVICE" == "Anbernic RG552" ]; then
   ply-image /usr/config/splash/splash-1920.png
+elif [ "$DEVICE" == "GameMT E6" ]; then
+  ply-image /usr/config/splash/splash-854.png
 else
   magick /usr/config/splash/splash-480.png bgra:/dev/fb0
 fi

@@ -569,6 +569,24 @@ def set_settings(rom_name: str, core: str, platform: str, controllers: str, auto
             'arduboy': (448, 320, 1024,512),         # x8
             'gameking': (432, 224, 1056, 704),       # x22
         }
+    elif device_name == "E6":
+        system_viewport = {
+            'standard': (1, 1, 639, 479),          # max-1
+            'gb': (80, 24, 480, 432),              # x3
+            'gbh': (80, 24, 480, 432),             # x3
+            'gbc': (80, 24, 480, 432),             # x3
+            'gbch': (80, 24, 480, 432),            # x3
+            'gba': (80, 80, 480, 320),             # x2
+            'supervision': (80, 0, 480, 480),      # x3
+            'gamegear': (80, 24, 480, 432),        # x3
+            'ggh': (80, 24, 480, 432),             # x3
+            'pokemini': (128, 112, 384, 256),      # x4
+            'ngp': (80, 12, 480, 456),             # x3
+            'ngpc': (80, 12, 480, 456),            # x3
+            'wonderswan': (96, 96, 448, 288),      # x2
+            'wonderswancolor': (96, 96, 448, 288), # x2
+            'arduboy': (64, 112, 512, 256),        # x4
+        }
 
     bezel_cfg = None
 
