@@ -298,4 +298,8 @@ else
   es_ondemand &
 fi
 
+mount -o remount,rw /flash
+dmesg | grep "panel id" > /flash/panel_ID
+mount -o remount,ro /flash
+
 clear > /dev/console

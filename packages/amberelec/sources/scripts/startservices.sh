@@ -62,6 +62,21 @@ case "$DEFE" in
 	;;
 esac
 
+# handle filebrowser
+DEFE=$(get_ee_setting ee_filebrowser.enabled)
+
+case "$DEFE" in
+"0")
+	systemctl stop filebrowser
+	;;
+"1")
+	systemctl start filebrowser
+	;;
+*)
+	systemctl stop filebrowser
+	;;
+esac
+
 # handle WEBUI
 DEFE=$(get_ee_setting ee_webui.enabled)
 

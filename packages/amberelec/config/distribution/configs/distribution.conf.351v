@@ -9,6 +9,9 @@ ee_syncting.enabled=0
 ## Enable SAMBA at boot
 ee_samba.enabled=1
 
+## Enable Filebrowser at boot
+ee_filebrowser.enabled=0
+
 ## Enable Bluetooth at boot
 ee_bluetooth.enabled=0
 

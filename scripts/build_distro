@@ -22,6 +22,7 @@ then
 fi
 
 # Clean a few packages to ensure the build date and version are updated
+# for package in amberelec busybox linux initramfs kernel-firmware u-boot-script u-boot lib32 retroarch retrorun emulationstation SDL2 SDL2-2.28.5 351files rs97-commander-sdl2 textviewer odroidgoa-utils enable-oga-sleep
 for package in amberelec emulationstation retroarch retrorun lib32
 do
   ./scripts/clean ${package}

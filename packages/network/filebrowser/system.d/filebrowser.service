@@ -1,0 +1,16 @@
+[Unit]
+Description=Filebrowser - Open Source Web file managing interface
+Documentation=https://filebrowser.org/
+After=network.target
+Requires=network.target
+
+[Service]
+Type=forking
+ExecStart=/bin/sh /usr/bin/filebrowser.sh
+Restart=on-failure
+SuccessExitStatus=3 4
+RestartForceExitStatus=3 4
+
+[Install]
+WantedBy=default.target
+
