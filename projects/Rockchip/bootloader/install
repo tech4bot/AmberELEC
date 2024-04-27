@@ -11,8 +11,8 @@ if [ $DEVICE = "RG552" ]; then
 else
   PKG_SOC="px30"
   PKG_DATAFILE="$PKG_RKBIN/bin/rk33/rk3326_ddr_333MHz_v1.15.bin"
-  PKG_LOADER="$PKG_RKBIN/bin/rk33/rk3326_miniloader_v1.28.bin"
-  PKG_BL31="$PKG_RKBIN/bin/rk33/rk3326_bl31_v1.22.elf"
+  PKG_LOADER="$PKG_RKBIN/bin/rk33/rk3326_miniloader_v1.20.bin"
+  PKG_BL31="$PKG_RKBIN/bin/rk33/rk3326_bl31_v1.21.elf"
 fi
 
 PKG_LOAD_ADDR="0x00200000"
@@ -62,6 +62,8 @@ if test \${hwrev} = 'xu10'; then
   sysboot mmc 1:1 any \${scriptaddr} /extlinux/rk3326-xu10-linux.dtb.conf
 elif test \${hwrev} = 'd007'; then
   sysboot mmc 1:1 any \${scriptaddr} /extlinux/rk3326-d007-linux.dtb.conf
+elif test \${hwrev} = 'r50s'; then
+  sysboot mmc 1:1 any \${scriptaddr} /extlinux/rk3326-r50s-linux.dtb.conf
 else
   sysboot mmc 1:1 any \${scriptaddr} /extlinux/rk3326-rg351mp-linux.dtb.conf
 fi
