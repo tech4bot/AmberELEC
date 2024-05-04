@@ -5,7 +5,7 @@
 
 PKG_NAME="linux"
 if [[ "${DEVICE}" =~ RG351 ]]; then
-  PKG_VERSION="b2fc0a5f496bb7895cfd617b561709787af8b763"
+  PKG_VERSION="7843036b70b7d6fc891e07158f06b6f7d74fe33d"
   PKG_GIT_CLONE_BRANCH="r50s"
   PKG_URL="https://github.com/tech4bot/kernel_rg351/archive/${PKG_VERSION}.tar.gz"
 elif [[ "${DEVICE}" =~ RG552 ]]; then

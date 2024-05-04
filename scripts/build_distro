@@ -22,7 +22,8 @@ then
 fi
 
 # Clean a few packages to ensure the build date and version are updated
-for package in amberelec emulationstation retroarch retrorun lib32
+for package in amberelec emulationstation retroarch retrorun lib32 linux SDL2 SDL2-2.28.5 odroidgoa-utils enable-oga-sleep initramfs kernel-firmware u-boot-script u-boot plymouth-lite
+#for package in amberelec emulationstation retroarch retrorun lib32
 do
   ./scripts/clean ${package}
 done

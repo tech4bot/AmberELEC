@@ -7,7 +7,7 @@ index e3f92b6..56799b8 100644
 
      // ont MP and V we dont need to rotate
 -    //rotation = (isRG351V() || isRG351MP()) ? GO2_ROTATION_DEGREES_0 : rotation;
-+    rotation = (isRG351V() || isRG351MP()) ? GO2_ROTATION_DEGREES_270 : rotation;
++    rotation = (isRG351V() || isRG351MP()) ? GO2_ROTATION_DEGREES_90 : rotation;
 
      switch (rotation)
      {

@@ -10,7 +10,7 @@ if [ $DEVICE = "RG552" ]; then
   PKG_BL31="$PKG_RKBIN/bin/rk33/rk3399_bl31_v1.36.elf"
 else
   PKG_SOC="px30"
-  PKG_DATAFILE="$PKG_RKBIN/bin/rk33/rk3326_ddr_333MHz_v1.15.bin"
+  PKG_DATAFILE="$PKG_RKBIN/bin/rk33/rk3326_ddr_333MHz_v2.09.bin"
   PKG_LOADER="$PKG_RKBIN/bin/rk33/rk3326_miniloader_v1.20.bin"
   PKG_BL31="$PKG_RKBIN/bin/rk33/rk3326_bl31_v1.21.elf"
 fi
