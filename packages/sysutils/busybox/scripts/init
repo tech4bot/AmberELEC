@@ -556,7 +556,15 @@ load_splash() {
       if [ -n "$SPLASHIMAGE" -a -f "$SPLASHIMAGE" ]; then
         ply-image $SPLASHIMAGE > /dev/null 2>&1
       fi
-      echo -en "\033[10000H\033[2K  Device:  ${S_DEVICE}\n  Image:   ${COREELEC_DEVICE}\n  Version: ${VERSION} (${BUILD_ID:0:7})\n  Built:   ${BUILD_DATE}\n" >/dev/console
+
+      if [ -f /storage/.config/quotes ]; then
+        R_QUOTE=$(shuf -n 1 "/storage/.config/quotes")
+      else
+        R_QUOTE="Old games, fresh fun."
+      fi
+      S_DEVICE="Game Console R50S"
+
+      echo -en "\033[10000H\033[2K  Device:  ${S_DEVICE}\n  Quote:   ${R_QUOTE}\n  Version: ${VERSION} (${BUILD_ID:0:7})\n  Built:   ${BUILD_DATE}\n" >/dev/console
 
       debug_msg "Framebuffer vertical res: $vres"
       debug_msg "Framebuffer splash image: $SPLASHIMAGE"

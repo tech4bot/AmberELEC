@@ -1,0 +1,20 @@
+diff --git a/src/go2/display.cpp b/src/go2/display.cpp
+index e3f92b6..56799b8 100644
+--- a/src/go2/display.cpp
++++ b/src/go2/display.cpp
+@@ -563,7 +563,7 @@ void go2_surface_blit(go2_surface_t *srcSurface, int srcX, int srcY, int srcWidt
+     src.mmuFlag = 1;
+
+     // ont MP and V we dont need to rotate
+-    //rotation = (isRG351V() || isRG351MP()) ? GO2_ROTATION_DEGREES_0 : rotation;
++    rotation = (isRG351V() || isRG351MP()) ? GO2_ROTATION_DEGREES_270 : rotation;
+
+     switch (rotation)
+     {
+@@ -1749,4 +1749,4 @@ void go2_context_surface_unlock(go2_context_t *context, go2_surface_t *surface)
+     }
+
+     gbm_surface_release_buffer(context->gbmSurface, bo);
+-}
+\ No newline at end of file
++}

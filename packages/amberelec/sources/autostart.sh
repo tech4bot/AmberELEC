@@ -275,6 +275,10 @@ if [ -f /storage/.config/lastgame ]; then
   sh -c -- "$command"
 fi
 
+if ! [ -f /storage/.config/quotes ]; then
+  cp /usr/config/quotes /storage/.config/
+fi
+
 # What to start at boot?
 DEFE=$(get_ee_setting ee_boot)
 

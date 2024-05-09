@@ -1,0 +1,13 @@
+diff --git a/theme.xml b/theme.xml
+index 9d339f8..f0e625b 100644
+--- a/theme.xml
++++ b/theme.xml
+@@ -21,7 +21,7 @@ license:       creative commons CC-BY-NC-SA
+    <subset name="aspect-ratio" displayName="Aspect Ratio">
+       <include ifArch="amberelec-rg552" name="5-3" displayName="5:3" />
+       <include ifArch="amberelec-rg351p" name="3-2" displayName="3:2" />
+-      <include ifArch="amberelec-rg351mp,amberelec-rg351v" name="4-3" displayName="4:3" />
++      <include ifArch="amberelec-rg351mp,amberelec-rg351v" name="16-9" displayName="16:9" />
+       <include ifNotArch="amberelec-rg552,amberelec-rg351p,amberelec-rg351mp,amberelec-rg351v" name="4-3" displayName="4:3" />
+       <include ifNotArch="amberelec-rg552,amberelec-rg351p,amberelec-rg351mp,amberelec-rg351v" name="3-2" displayName="3:2" />
+       <include ifNotArch="amberelec-rg552,amberelec-rg351p,amberelec-rg351mp,amberelec-rg351v" name="5-3" displayName="5:3" />

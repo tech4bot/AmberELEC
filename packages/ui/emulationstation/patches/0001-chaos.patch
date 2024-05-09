@@ -1,0 +1,17 @@
+diff --git a/es-app/src/ApiSystem.cpp b/es-app/src/ApiSystem.cpp
+index 3e1e8b523..b317e499c 100644
+--- a/es-app/src/ApiSystem.cpp
++++ b/es-app/src/ApiSystem.cpp
+@@ -144,10 +144,10 @@ std::string ApiSystem::getApplicationName()
+ 	{
+ 		std::string contents;
+ 		std::getline(ifs, contents);
+-		return "AmberELEC EmulationStation (" + contents + ")";
++		return "cHAos EmulationStation (" + contents + ")";
+ 	}
+ 
+-	return "AmberELEC EmulationStation";
++	return "cHAos EmulationStation";
+ }
+ 
+ bool ApiSystem::setOverscan(bool enable)

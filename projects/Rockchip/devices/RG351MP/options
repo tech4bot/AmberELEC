@@ -34,13 +34,14 @@
     KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-rg351mp-linux-timing_fix.dtb"
     KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-xu10-linux.dtb"
     KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-d007-linux.dtb"
+    KERNEL_MAKE_EXTRACMD+=" rockchip/rk3326-r50s-linux.dtb"
 
   # Mali GPU family
     MALI_FAMILY="g31"
     OPENGLES="libmali"
 
   # kernel serial console
-    EXTRA_CMDLINE="console=ttyFIQ0 console=tty0 net.iframes=0 fbcon=rotate:0 ssh consoleblank=0 systemd.show_status=0 loglevel=0 panic=20"
+    EXTRA_CMDLINE="console=ttyFIQ0 console=tty0 net.iframes=0 fbcon=rotate:3 ssh consoleblank=0 systemd.show_status=0 loglevel=0 panic=20"
 
     LINUX="RG351MP"
     UBOOT_SYSTEM="rg351mp"
