@@ -241,7 +241,7 @@ fi
 
 # hide tools entries
 if [ "$EE_DEVICE" == "RG351MP" ]; then
-  if [ "$DEVICE" == "PowKiddy Magicx XU10" ]  || [ "$DEVICE" == "SZDiiER D007 Plus" ]; then
+  if [ "$DEVICE" == "PowKiddy Magicx XU10" ]  || [ "$DEVICE" == "GameMT E6" ]; then
     xmlstarlet ed -L -u "//game[path='./display_fix.sh']/hidden" -v "true" /storage/.config/distribution/modules/gamelist.xml
     xmlstarlet ed -L -u "//game[path='./joyleds_conf.sh']/hidden" -v "false" /storage/.config/distribution/modules/gamelist.xml
   else
@@ -273,6 +273,10 @@ if [ -f /storage/.config/lastgame ]; then
   command=`cat /storage/.config/lastgame`
   rm -rf /storage/.config/lastgame
   sh -c -- "$command"
+fi
+
+if ! [ -f /storage/.config/quotes ]; then
+  cp /usr/config/quotes /storage/.config/
 fi
 
 # What to start at boot?

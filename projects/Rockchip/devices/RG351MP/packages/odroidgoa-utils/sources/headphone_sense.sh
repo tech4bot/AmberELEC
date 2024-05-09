@@ -8,7 +8,7 @@
 
 DEVICE=$(tr -d '\0' < /sys/firmware/devicetree/base/model)
 
-if [ "$DEVICE" = "SZDiiER D007 Plus" ]; then
+if [ "$DEVICE" = "GameMT E6" ]; then
     # set amixer to SPK_HP
     amixer -c 0 cset iface=MIXER,name='Playback Path' SPK_HP
     # set spearker gpio 0 pin 11 to enable speaker

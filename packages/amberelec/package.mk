@@ -148,10 +148,13 @@ post_install() {
   fi
 
   echo "" >${INSTALL}/etc/issue
-  echo -e "\033[38;5;220m     _         _            \033[38;5;255m ___ _    ___ ___ " >>${INSTALL}/etc/issue
-  echo -e "\033[38;5;220m    /_\  _ __ | |__  ___ _ _\033[38;5;255m| __| |  | __/ __|" >>${INSTALL}/etc/issue
-  echo -e "\033[38;5;220m   / _ \| '  \| '_ \/ -_) '_\033[38;5;255m| _|| |__| _| (__ " >>${INSTALL}/etc/issue
-  echo -e "\033[38;5;220m  /_/ \_\_|_|_|_.__/\___|_| \033[38;5;255m|___|____|___\___|" >>${INSTALL}/etc/issue
+  yellow="\e[33m"
+  cyan="\e[96m"
+  echo -e "${yellow} ______  ${cyan}   __  __     ______  ${yellow}   ______     ______    " >>${INSTALL}/etc/issue
+  echo -e "${yellow}/\  ___\ ${cyan}  /\ \_\ \   /\  __ \ ${yellow}  /\  __ \   /\  ___\   " >>${INSTALL}/etc/issue
+  echo -e "${yellow}\ \ \____ ${cyan} \ \  __ \  \ \  __ \ ${yellow} \ \ \_\ \  \ \___  \  " >>${INSTALL}/etc/issue
+  echo -e "${yellow} \ \_____\ ${cyan} \ \_\ \_\  \ \_\ \_\ ${yellow} \ \_____\  \/\_____\ " >>${INSTALL}/etc/issue
+  echo -e "${yellow}  \/_____/ ${cyan}  \/_/\/_/   \/_/\/_/ ${yellow}  \/_____/   \/_____/ " >>${INSTALL}/etc/issue
   echo -e "\033[0m" >>${INSTALL}/etc/issue
   echo "" >>${INSTALL}/etc/issue
 

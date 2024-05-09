@@ -1,0 +1,264 @@
+diff --git a/arch/arm64/boot/dts/rockchip/rk3326-d007-linux.dts b/arch/arm64/boot/dts/rockchip/rk3326-d007-linux.dts
+index 20f786805..bf92d6681 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3326-d007-linux.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3326-d007-linux.dts
+@@ -2,7 +2,7 @@
+ /*
+  * Copyright (c) 2021 Anbernic
+  *
+- * SZDiiER D007 Plus
++ * GameMT E6
+  *
+  */
+ 
+@@ -16,49 +16,52 @@
+ #include "rk3326-linux.dtsi"
+ 
+ / {
+-	model = "SZDiiER D007 Plus";
++	model = "GameMT E6";
+ 	compatible = "rockchip,rk3326-d007-linux", "rockchip,rk3326";
+ 
+ 	chosen {
+                 bootargs = "";
+ 	};
+ 
+-	adc_keys: rg351-keys {
+-		compatible = "adc-keys";
++
++	vol_keys: rg351-keys {
++		compatible = "rockchip,key";
+ 		io-channels = <&saradc 2>;
+-		io-channel-names = "buttons";
+-		poll-interval = <100>;
+-		keyup-threshold-microvolt = <1800000>;
+-		autorepeat;
+ 
+ 		vol-down-key {
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 			label = "volume down";
+-			press-threshold-microvolt = <300000>;
++			rockchip,adc_value = <166>;
+ 		};
+ 
+ 		vol-up-key {
+ 			linux,code = <KEY_VOLUMEUP>;
+ 			label = "volume up";
+-			press-threshold-microvolt = <17000>;
++			rockchip,adc_value = <9>;
+ 		};
++	};
+ 
+-		esc-key {
+-			linux,code = <KEY_ESC>;
+-			label = "esc/FN";
+-			press-threshold-microvolt = <1310000>;
+-		};
++
++	func_keys: func-keys {
++		compatible = "rockchip,key";
++		io-channels = <&saradc 2>;
+ 
+ 		select-key {
+ 			linux,code = <KEY_RIGHTSHIFT>;
+ 			label = "select";
+-			press-threshold-microvolt = <624000>;
++			rockchip,adc_value = <347>;
+ 		};
+ 
+ 		start-key {
+ 			linux,code = <KEY_ENTER>;
+ 			label = "start";
+-			press-threshold-microvolt = <987000>;
++			rockchip,adc_value = <740>;
++		};
++
++		esc-key {
++			linux,code = <KEY_ESC>;
++			label = "esc/FN";
++			rockchip,adc_value = <553>;
+ 		};
+ 	};
+ 
+@@ -117,7 +120,7 @@
+ 		button-adc-scale = <2>;
+ 
+ 		/* adc deadzone range  */
+-		button-adc-deadzone = <16>;
++		button-adc-deadzone = <64>;
+ 
+ 		/*
+ 		  specifies fuzz value that is used to filter noise from
+@@ -132,32 +135,32 @@
+ 		  report value = (real_adc_data * tuning_value) / 100
+ 		*/
+ 		abs_x-p-tuning = <200>;
+-		abs_x-n-tuning = <850>;
++		abs_x-n-tuning = <250>;
+ 
+-		abs_y-p-tuning = <250>;
+-		abs_y-n-tuning = <850>;
++		abs_y-p-tuning = <200>;
++		abs_y-n-tuning = <250>;
+ 
+ 		abs_rx-p-tuning = <200>;
+-		abs_rx-n-tuning = <850>;
++		abs_rx-n-tuning = <200>;
+ 
+ 		abs_ry-p-tuning = <200>;
+-		abs_ry-n-tuning = <850>;
++		abs_ry-n-tuning = <200>;
+ 
+ 		/* poll device interval (ms), adc read interval */
+ 		poll-interval = <10>;
+ 
+-		/* required for RG351MP  */
++		/* required for RG351MP  
+ 		invert-absx;
+ 		invert-absrx;
+-		
+-		/* required for D007 */
++		*/
++		/* required for D007 
+ 		switch-xy;
+ 		switch-rxy;
+-
++		*/
+ 		/* gpio button auto repeat set value : default disable */
+-		/**/
++		/*
+ 			autorepeat;
+-		
++		*/
+ 
+ 		/*
+ 		      *** ODROIDGO3-Advance Switch layoout ***
+@@ -296,7 +299,15 @@
+ 			gpios = <&gpio2 4 GPIO_ACTIVE_HIGH>;
+ 		};
+ 
++		right_led {
++			default-state = "on";
++			gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
++		};
+ 
++		left_led {
++			default-state = "on";
++			gpios = <&gpio0 15 GPIO_ACTIVE_HIGH>;
++		};
+ 	};
+ 
+ 	backlight: backlight {
+@@ -515,42 +526,42 @@
+ 		height-mm = <48>;
+ 
+ 		dsi,flags = <(MIPI_DSI_MODE_VIDEO           |
+-			      MIPI_DSI_MODE_VIDEO_BURST     |
+-			      MIPI_DSI_MODE_LPM             |
+-			      MIPI_DSI_MODE_EOT_PACKET)>;
++				MIPI_DSI_MODE_VIDEO_BURST     |
++				MIPI_DSI_MODE_LPM             |
++				MIPI_DSI_MODE_EOT_PACKET)>;
+ 
+ 		dsi,format = <MIPI_DSI_FMT_RGB888>;
+-		dsi,lanes = <4>;
++		dsi,lanes = <2>;
+ 
+ 		/*
+ 			- panel-init-sequence data description -
+-			  mipi_cmd, delay(ms), len, lcd_cmd, lcd_data...
++			mipi_cmd, delay(ms), len, lcd_cmd, lcd_data...
+ 
+ 			- mipi_cmd description -
+-			  05 : MIPI_DSI_SHORT_WRITE
+-			  15 : MIPI_DSI_SHORT_WRITE_PARAM
+-			  39 : MIPI_DSI_LONG_WRITE
++			05 : MIPI_DSI_SHORT_WRITE
++			15 : MIPI_DSI_SHORT_WRITE_PARAM
++			39 : MIPI_DSI_LONG_WRITE
+ 
+ 			- ILI9486 (Initialize sequence) -
+-			  11: Sleep out & 250ms wait
+-			  E0: PositiveGamma
+-			  E1: NegativeGamma
+-			  C0: PowerControl_1
+-			  C1: PowerControl_2
+-			  C5: VcomControl
+-			  36: MemoryAccess
+-			  3A: InterfacePixelFormat
+-			  B0: InterfaceModeControl
+-			  B1: FrameRateControl
+-			  B4: DisplayInversionControl
+-			  B6: DisplayFunctionControl
+-			  E9: SetImageFunction
+-			  F7: AdjustControl_3
+-			  21: DisplayInversionOn
+-			  29: DisplayOn & 50ms wait
++			11: Sleep out & 250ms wait
++			E0: PositiveGamma
++			E1: NegativeGamma
++			C0: PowerControl_1
++			C1: PowerControl_2
++			C5: VcomControl
++			36: MemoryAccess
++			3A: InterfacePixelFormat
++			B0: InterfaceModeControl
++			B1: FrameRateControl
++			B4: DisplayInversionControl
++			B6: DisplayFunctionControl
++			E9: SetImageFunction
++			F7: AdjustControl_3
++			21: DisplayInversionOn
++			29: DisplayOn & 50ms wait
+ 		*/
+ 
+-		panel-init-sequence = [15 00 02 ff 30 15 00 02 ff 52 15 00 02 ff 01 15 00 02 e3 00 15 00 02 24 12 15 00 02 25 14 15 00 02 26 78 15 00 02 27 78 15 00 02 28 6f 15 00 02 29 01 15 00 02 2a df 15 00 02 37 9c 15 00 02 38 a7 15 00 02 39 51 15 00 02 44 00 15 00 02 49 3c 15 00 02 59 fe 15 00 02 5c 00 15 00 02 80 20 15 00 02 91 77 15 00 02 92 77 15 00 02 a0 55 15 00 02 a1 50 15 00 02 a3 58 15 00 02 a4 9c 15 00 02 a7 02 15 00 02 a8 01 15 00 02 a9 21 15 00 02 aa fc 15 00 02 ab 28 15 00 02 ac 06 15 00 02 ad 06 15 00 02 ae 06 15 00 02 af 03 15 00 02 b0 08 15 00 02 b1 26 15 00 02 b2 28 15 00 02 b3 28 15 00 02 b4 03 15 00 02 b5 08 15 00 02 b6 26 15 00 02 b7 08 15 00 02 b8 26 15 00 02 ff 30 15 00 02 ff 52 15 00 02 ff 02 15 00 02 b0 0b 15 00 02 b1 16 15 00 02 b2 17 15 00 02 b3 2c 15 00 02 b4 32 15 00 02 b5 3b 15 00 02 b6 29 15 00 02 b7 40 15 00 02 b8 0d 15 00 02 b9 05 15 00 02 ba 12 15 00 02 bb 10 15 00 02 bc 12 15 00 02 bd 15 15 00 02 be 19 15 00 02 bf 0e 15 00 02 c0 16 15 00 02 c1 0a 15 00 02 d0 0c 15 00 02 d1 17 15 00 02 d2 14 15 00 02 d3 2e 15 00 02 d4 32 15 00 02 d5 3c 15 00 02 d6 22 15 00 02 d7 3d 15 00 02 d8 0d 15 00 02 d9 07 15 00 02 da 13 15 00 02 db 13 15 00 02 dc 11 15 00 02 dd 15 15 00 02 de 19 15 00 02 df 10 15 00 02 e0 17 15 00 02 e1 0a 15 00 02 ff 30 15 00 02 ff 52 15 00 02 ff 03 15 00 02 ff 30 15 00 02 ff 52 15 00 02 ff 03 15 00 02 00 00 15 00 02 01 00 15 00 02 02 00 15 00 02 03 00 15 00 02 04 61 15 00 02 05 80 15 00 02 06 c7 15 00 02 07 01 15 00 02 08 82 15 00 02 09 83 15 00 02 30 00 15 00 02 31 00 15 00 02 32 00 15 00 02 33 00 15 00 02 34 61 15 00 02 35 c5 15 00 02 36 80 15 00 02 37 23 15 00 02 40 82 15 00 02 41 83 15 00 02 42 80 15 00 02 43 81 15 00 02 44 11 15 00 02 45 e2 15 00 02 46 e1 15 00 02 47 11 15 00 02 48 e4 15 00 02 49 e3 15 00 02 50 02 15 00 02 51 01 15 00 02 52 04 15 00 02 53 03 15 00 02 54 11 15 00 02 55 e6 15 00 02 56 e5 15 00 02 57 11 15 00 02 58 e8 15 00 02 59 e7 15 00 02 7e 08 15 00 02 81 0f 15 00 02 84 0c 15 00 02 85 0d 15 00 02 86 07 15 00 02 87 04 15 00 02 88 05 15 00 02 89 06 15 00 02 8a 00 15 00 02 97 0f 15 00 02 9a 0c 15 00 02 9b 0d 15 00 02 9c 07 15 00 02 9d 04 15 00 02 9e 05 15 00 02 9f 06 15 00 02 a0 00 15 00 02 e0 02 15 00 02 e1 52 15 00 02 ff 30 15 00 02 ff 52 15 00 02 ff 00 15 00 02 36 02 05 c8 01 11 05 64 01 29];
++		panel-init-sequence = [39 00 06 ff ff 98 06 04 01 15 00 02 08 10 15 00 02 21 01 15 00 02 30 01 15 00 02 31 00 15 00 02 40 10 15 00 02 41 33 15 00 02 42 03 15 00 02 43 09 15 00 02 44 06 15 00 02 50 78 15 00 02 51 78 15 00 02 52 00 15 00 02 53 3d 15 00 02 54 00 15 00 02 55 45 15 00 02 57 50 15 00 02 60 07 15 00 02 61 00 15 00 02 62 07 15 00 02 63 0c 15 00 02 a0 00 15 00 02 a1 1e 15 00 02 a2 27 15 00 02 a3 0d 15 00 02 a4 05 15 00 02 a5 0d 15 00 02 a6 07 15 00 02 a7 05 15 00 02 a8 06 15 00 02 a9 0a 15 00 02 aa 0f 15 00 02 ab 09 15 00 02 ac 10 15 00 02 ad 11 15 00 02 ae 0a 15 00 02 af 00 15 00 02 c0 00 15 00 02 c1 1f 15 00 02 c2 26 15 00 02 c3 0d 15 00 02 c4 05 15 00 02 c5 0d 15 00 02 c6 07 15 00 02 c7 05 15 00 02 c8 06 15 00 02 c9 0a 15 00 02 ca 0f 15 00 02 cb 09 15 00 02 cc 10 15 00 02 cd 11 15 00 02 ce 0a 15 00 02 cf 00 39 00 06 ff ff 98 06 04 06 15 00 02 00 21 15 00 02 01 09 15 00 02 02 00 15 00 02 03 00 15 00 02 04 01 15 00 02 05 01 15 00 02 06 80 15 00 02 07 05 15 00 02 08 02 15 00 02 09 00 15 00 02 0a 00 15 00 02 0b 00 15 00 02 0c 01 15 00 02 0d 01 15 00 02 0e 00 15 00 02 0f 00 15 00 02 10 e0 15 00 02 11 e0 15 00 02 12 00 15 00 02 13 00 15 00 02 14 00 15 00 02 15 c0 15 00 02 16 08 15 00 02 17 00 15 00 02 18 00 15 00 02 19 00 15 00 02 1a 00 15 00 02 1b 00 15 00 02 1c 00 15 00 02 1d 00 15 00 02 20 01 15 00 02 21 23 15 00 02 22 45 15 00 02 23 67 15 00 02 24 01 15 00 02 25 23 15 00 02 26 45 15 00 02 27 67 15 00 02 30 01 15 00 02 31 11 15 00 02 32 00 15 00 02 33 22 15 00 02 34 22 15 00 02 35 bb 15 00 02 36 ca 15 00 02 37 dd 15 00 02 38 ac 15 00 02 39 66 15 00 02 3a 77 15 00 02 3b 22 15 00 02 3c 22 15 00 02 3d 22 15 00 02 3e 22 15 00 02 3f 22 15 00 02 40 22 15 00 02 52 10 15 00 02 53 10 39 00 06 ff ff 98 06 04 07 15 00 02 17 22 15 00 02 02 77 15 00 02 e1 79 15 00 02 06 13 39 00 06 ff ff 98 06 04 00 05 c8 01 11 05 64 01 29];
+ 
+ 		panel-exit-sequence = [
+ 			05 10 01 28
+@@ -561,17 +572,17 @@
+ 			native-mode = <&timing0>;
+ 
+ 			timing0: timing0 {
+-				clock-frequency = <33000000>;
+-				hactive = <640>;
+-				vactive = <480>;
+-				hfront-porch = <120>;
++				clock-frequency = <28000000>;
++				hactive = <480>;
++				vactive = <854>;
++				hfront-porch = <14>;
+ 				hsync-len = <2>;
+-				hback-porch = <120>;
++				hback-porch = <24>;
+ 				vfront-porch = <18>;
+ 				vsync-len = <2>;
+-				vback-porch = <20>;
++				vback-porch = <15>;
+ 				hsync-active = <1>;
+-				vsync-active = <1>;
++				vsync-active = <0>;
+ 				de-active = <0>;
+ 				pixelclk-active = <0>;
+ 			};
+@@ -981,14 +992,14 @@
+ 
+ 		battery {
+ 			compatible = "rk817,battery";
+-			ocv_table = <3400 3442 3489 3531 3565 3596 3620 3645 3678 3721 3769 3821 3862 3887 3903 3949 3999 4022 4030 4069 4142>;
+-			design_capacity = <2394>;
+-			design_qmax = <2500>;
+-			bat_res = <100>;
++			ocv_table = <3500 3625 3685 3697 3718 3735 3748 3760 3774 3788 3802 3816 3834 3853 3877 3908 3946 3975 4018 4071 4106>;
++			design_capacity = <4000>;
++			design_qmax = <4020>;
++			bat_res = <180>;
+ 			sleep_enter_current = <300>;
+ 			sleep_exit_current = <300>;
+ 			sleep_filter_current = <100>;
+-			power_off_thresd = <3400>;
++			power_off_thresd = <3300>;
+ 			zero_algorithm_vol = <3850>;
+ 			max_soc_offset = <60>;
+ 			monitor_sec = <5>;

@@ -556,7 +556,14 @@ load_splash() {
       if [ -n "$SPLASHIMAGE" -a -f "$SPLASHIMAGE" ]; then
         ply-image $SPLASHIMAGE > /dev/null 2>&1
       fi
-      echo -en "\033[10000H\033[2K  Device:  ${S_DEVICE}\n  Image:   ${COREELEC_DEVICE}\n  Version: ${VERSION} (${BUILD_ID:0:7})\n  Built:   ${BUILD_DATE}\n" >/dev/console
+
+      if [ -f /storage/.config/quotes ]; then
+        R_QUOTE=$(shuf -n 1 "/storage/.config/quotes")
+      else
+        R_QUOTE="Old games, fresh fun."
+      fi
+
+      echo -en "\033[10000H\033[2K  Device:  ${S_DEVICE}\n  Quote:   ${R_QUOTE}\n  Version: ${VERSION} (${BUILD_ID:0:7})\n  Built:   ${BUILD_DATE}\n" >/dev/console
 
       debug_msg "Framebuffer vertical res: $vres"
       debug_msg "Framebuffer splash image: $SPLASHIMAGE"
@@ -766,18 +773,18 @@ mount_games() {
     do
       if [ -e "/dev/${DEV}" ] && [ ! -e "/storage/.please_resize_me" ]
       then
-	FS=$(blkid /dev/${DEV} | grep -e 'exfat' -e 'ext4' &>/dev/null)
+        FS=$(blkid /dev/${DEV} | grep -e 'exfat' -e 'ext4' &>/dev/null)
         if [ "$?" == "0" ]
-	then
+        then
           mount /dev/${DEV} /storage/roms >/dev/null 2>&1
           break
         else
-	  echo "Unsupported games filesystem detected. Please reformat with exFAT or ext4."
-	  echo ""
-	  StartProgress countdown "Shutting down in 5... " 30 "NOW"
-	  sync
-	  poweroff
-	fi
+          echo "Unsupported games filesystem detected. Please reformat with exFAT or ext4."
+          echo ""
+          StartProgress countdown "Shutting down in 5... " 30 "NOW"
+          sync
+          poweroff
+        fi
       fi
     done
 

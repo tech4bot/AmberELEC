@@ -9,7 +9,7 @@
 
 DEVICE=$(tr -d '\0' < /sys/firmware/devicetree/base/model)
 
-if [ "$DEVICE" = "SZDiiER D007 Plus" ]; then
+if [ "$DEVICE" = "GameMT E6" ]; then
     # Configuration file
     CONFIG_FILE="/storage/.config/joyleds.cfg"
 

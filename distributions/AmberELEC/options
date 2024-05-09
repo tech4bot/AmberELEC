@@ -11,22 +11,22 @@
   HARDENING_SUPPORT="no"
 
 # Name of the Distro to build (full name, without special characters)
-  DISTRONAME="AmberELEC"
+  DISTRONAME="cHAos"
 
 # short project description
   DESCRIPTION="An Open Source firmware."
 
 # Distribution Home URL
-  HOME_URL="https://github.com/AmberELEC/AmberELEC"
+  HOME_URL="https://github.com/tech4bot/AmberELEC"
 
 # Documentation URL
-  WIKI_URL="https://amberelec.org"
+  WIKI_URL="https://tech4bot.org"
 
 # Where to report bugs
-  BUG_REPORT_URL="https://github.com/AmberELEC/AmberELEC/issues"
+  BUG_REPORT_URL="https://github.com/tech4bot/AmberELEC/issues"
 
 # Root password to integrate in the target system
-  ROOT_PASSWORD="amberelec"
+  ROOT_PASSWORD="chaos"
 
 # Install glibc locales to the build (yes / no)
   GLIBC_LOCALES="yes"
@@ -120,7 +120,7 @@
   GET_HANDLER_SUPPORT="archive git file"
 
 # Partition labels for USB/SD installation media
-  DISTRO_BOOTLABEL="AMBRELC"
+  DISTRO_BOOTLABEL="CHAOS"
   DISTRO_DISKLABEL="STORAGE"
 
 # Settings package name - blank if not required

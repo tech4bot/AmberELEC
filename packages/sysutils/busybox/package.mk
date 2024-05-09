@@ -114,6 +114,10 @@ makeinstall_target() {
 
   # create /etc/hostname
     ln -sf /proc/sys/kernel/hostname ${INSTALL}/etc/hostname
+
+  # create for quotes
+  mkdir -p ${INSTALL}/usr/config/
+    cp ${PKG_DIR}/scripts/quotes ${INSTALL}/usr/config/
 }
 
 post_install() {
