@@ -19,6 +19,11 @@ if [[ "${DEVICE}" =~ RG351 ]]; then
   PKG_GIT_CLONE_SINGLE="yes"
   PKG_GIT_CLONE_DEPTH="1"
   PKG_URL="https://github.com/AmberELEC/uboot_rg351.git"
+elif [[ "${DEVICE}" == RG353V ]]; then
+  PKG_VERSION="afab29d9258edd48b171ff398898d05469000fe3"
+  PKG_GIT_CLONE_SINGLE="yes"
+  PKG_GIT_CLONE_DEPTH="1"
+  PKG_URL="https://github.com/AmberELEC/uboot_rg353.git"
 elif [[ "${DEVICE}" =~ RG552 ]]; then
   PKG_VERSION="866ca972d6c3cabeaf6dbac431e8e08bb30b3c8e"
   PKG_GIT_CLONE_BRANCH=v2024.01

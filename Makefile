@@ -28,6 +28,7 @@ world:
 	DEVICE=RG351V ARCH=aarch64 ./scripts/build_distro
 	DEVICE=RG351MP ARCH=aarch64 ./scripts/build_distro
 	DEVICE=RG552 ARCH=aarch64 ./scripts/build_distro
+	DEVICE=RG353V ARCH=aarch64 ./scripts/build_distro
 
 RG351P:
 	DEVICE=RG351P ARCH=aarch64 ./scripts/build_distro
@@ -41,15 +42,20 @@ RG351MP:
 RG552:
 	DEVICE=RG552 ARCH=aarch64 ./scripts/build_distro
 
+RG353V:
+	DEVICE=RG353V ARCH=aarch64 ./scripts/build_distro
+
 lib32:
 	DEVICE=RG351P ARCH=arm scripts/clean build-lib32
 	DEVICE=RG351V ARCH=arm scripts/clean build-lib32
 	DEVICE=RG351MP ARCH=arm scripts/clean build-lib32
 	DEVICE=RG552 ARCH=arm scripts/clean build-lib32
+	DEVICE=RG353V ARCH=arm scripts/clean build-lib32
 	DEVICE=RG351P ARCH=arm scripts/build build-lib32
 	DEVICE=RG351V ARCH=arm scripts/build build-lib32
 	DEVICE=RG351MP ARCH=arm scripts/build build-lib32
 	DEVICE=RG552 ARCH=arm scripts/build build-lib32
+	DEVICE=RG353V ARCH=arm scripts/build build-lib32
 
 update:
 	DEVICE=RG552 ARCH=aarch64 ./scripts/update_packages
@@ -90,7 +96,7 @@ docker-%: DOCKER_CMD:= $(shell if which docker 2>/dev/null 1>/dev/null; then ech
 docker-%: PODMAN_ARGS:= $(shell if ! which docker 2>/dev/null 1>/dev/null && which podman 2> /dev/null 1> /dev/null; then echo "--userns=keep-id --security-opt=label=disable -v /proc/mounts:/etc/mtab"; fi)
 
 # Use 'sudo' if docker ps doesn't work.  In theory, other things than missing sudo could cause this.  But sudo needed is a common issue and easy to fix.
-docker-%: SUDO := $(shell if which docker 2> /dev/null 1> /dev/null && ! docker ps -q 2> /dev/null 1> /dev/null ; then echo "sudo"; fi)
+docker-%: SUDO := 
 
 # Launch docker as interactive if this is an interactive shell (allows ctrl-c for manual and running non-interactive - aka: build server)
 docker-%: INTERACTIVE=$(shell [ -t 0 ] && echo "-it")
@@ -98,8 +104,8 @@ docker-%: INTERACTIVE=$(shell [ -t 0 ] && echo "-it")
 # By default pass through anything after `docker-` back into `make`
 docker-%: COMMAND=make $*
 
-# Get .env file ready
-docker-%: $(shell env | grep "=" > .env)
+# Get .env file ready — strip Mac-specific temp vars that don't exist inside the container
+docker-%: $(shell env | grep "=" | grep -v "^TMPDIR=\|^TEMP=\|^TMP=\|^TEMPDIR=" > .env)
 
 # If the user issues a `make docker-shell` just start up bash as the shell to run commands
 docker-shell: COMMAND=bash
@@ -121,5 +127,5 @@ docker-image-push:
 
 # Wire up docker to call equivalent make files using % to match and $* to pass the value matched by %
 docker-%:
-	$(SUDO) $(DOCKER_CMD) run $(PODMAN_ARGS) $(INTERACTIVE) --init --env-file .env --rm --user $(UID):$(GID) $(DEVELOPER_SETTINGS) -v $(PWD):$(DOCKER_WORK_DIR) -v $(HOME)/.cache:$(HOME)/.cache -w $(DOCKER_WORK_DIR) $(DOCKER_IMAGE) $(COMMAND)
+	$(SUDO) $(DOCKER_CMD) run $(PODMAN_ARGS) $(INTERACTIVE) --init --env-file .env -e TMPDIR=/tmp --rm --user $(UID):$(GID) $(DEVELOPER_SETTINGS) -v $(PWD):$(DOCKER_WORK_DIR) -v $(HOME)/.cache:$(HOME)/.cache -w $(DOCKER_WORK_DIR) $(DOCKER_IMAGE) $(COMMAND)
 
